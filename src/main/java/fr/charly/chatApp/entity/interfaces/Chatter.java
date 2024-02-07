@@ -33,8 +33,8 @@ public class Chatter extends User {
     private List<Comment> comments = new ArrayList<>();
 
 
-    @OneToMany
-    private List<Message> messages = new ArrayList<>();
+    @OneToMany (mappedBy = "chatter")
+    private List<Reaction> reactions = new ArrayList<>();
 
 
 

@@ -26,7 +26,7 @@ public class Thread {
     private Date createdAt;
 
     @ManyToMany
-    private List<Chatter> chatters = new ArrayList<>();
+    private List<Follow> follows = new ArrayList<>();
 
     @OneToMany(mappedBy = "thread")
     private List<Comment> comments = new ArrayList<>();

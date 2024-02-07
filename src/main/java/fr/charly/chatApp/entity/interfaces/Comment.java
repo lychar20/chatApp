@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,5 +38,8 @@ public class Comment {
 
     @ManyToOne
     private Thread thread;
+
+    @OneToMany(mappedBy = "comment")
+    private List<Reaction> reactions = new ArrayList<>();
 
 }

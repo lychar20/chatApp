@@ -32,5 +32,5 @@ public class Category {
     private List<Category> children = new ArrayList<>();
 
     @ManyToMany
-    private List<Chatter> chatters = new ArrayList<>();
+    private List<Favorites> favorites = new ArrayList<>();
 }
