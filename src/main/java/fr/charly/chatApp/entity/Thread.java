@@ -1,4 +1,4 @@
-package fr.charly.chatApp.entity.interfaces;
+package fr.charly.chatApp.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

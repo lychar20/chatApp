@@ -1,4 +1,4 @@
-package fr.charly.chatApp.entity.interfaces;
+package fr.charly.chatApp.entity;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @NoArgsConstructor
@@ -24,10 +26,10 @@ public class Chatter extends User {
     private LocalDate birthAt;
 
     @ManyToMany
-    private List<Thread> threads = new ArrayList<>();
+    private List<Follow> follows = new ArrayList<>();
 
     @ManyToMany
-    private List<Category> categories = new ArrayList<>();
+    private List<Favorites> favorites = new ArrayList<>();
 
     @OneToMany(mappedBy = "chatter")
     private List<Comment> comments = new ArrayList<>();

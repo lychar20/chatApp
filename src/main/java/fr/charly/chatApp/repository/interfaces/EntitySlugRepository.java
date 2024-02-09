@@ -1,4 +1,4 @@
-package fr.charly.chatApp.repository;
+package fr.charly.chatApp.repository.interfaces;
 
 import java.util.Optional;
 

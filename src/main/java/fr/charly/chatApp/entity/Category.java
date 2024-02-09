@@ -1,5 +1,6 @@
-package fr.charly.chatApp.entity.interfaces;
+package fr.charly.chatApp.entity;
 
+import fr.charly.chatApp.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Category {
+public class Category implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +34,9 @@ public class Category {
 
     @ManyToMany
     private List<Favorites> favorites = new ArrayList<>();
+
+    @Override
+    public String getField() {
+        return name;
+    }
 }
