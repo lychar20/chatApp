@@ -22,13 +22,13 @@
 <%--&lt;%&ndash; Renomme de manière plus simple le "pageContext.request.contextPath" &ndash;%&gt;--%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-<%--<%--%>
-<%--    WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);--%>
-<%--    if (ctx != null) {--%>
-<%--        UserService userService = ctx.getBean(UserService.class);--%>
-<%--        if (request.getUserPrincipal() != null) {--%>
-<%--            User user = userService.findByEmail(request.getUserPrincipal().getName());--%>
-<%--            request.setAttribute("userLogged", user);--%>
-<%--        }--%>
-<%--    }--%>
-<%--%>--%>
+<%
+    WebApplicationContext ctx = RequestContextUtils.findWebApplicationContext(request);
+    if (ctx != null) {
+        UserService userService = ctx.getBean(UserService.class);
+        if (request.getUserPrincipal() != null) {
+            User user = userService.findByNickname(request.getUserPrincipal().getName());
+            request.setAttribute("userLogged", user);
+        }
+    }
+%>
