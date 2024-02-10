@@ -1,5 +1,6 @@
 package fr.charly.chatApp.entity;
 
+import fr.charly.chatApp.entity.interfaces.NomenclatureInterface;
 import fr.charly.chatApp.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Category implements SluggerInterface {
+public class Category implements SluggerInterface, NomenclatureInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
