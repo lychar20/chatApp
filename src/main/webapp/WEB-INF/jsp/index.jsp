@@ -9,7 +9,7 @@
 
 
 <div class="row">
-    <c:forEach items="${categoryChoice.size()}" var="category">
+    <c:forEach items="${categoryChoice}" var="category">
         <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
             <%@ include file="component/entity/discussion-card.jsp" %>
         </div>
