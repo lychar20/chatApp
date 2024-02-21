@@ -1,10 +1,8 @@
 package fr.charly.chatApp.entity;
 
+import fr.charly.chatApp.entity.enumo.MessageType;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
 public class Comment {
 
     @Id
@@ -42,5 +41,7 @@ public class Comment {
 
     @OneToMany(mappedBy = "comment")
     private List<Reaction> reactions = new ArrayList<>();
+
+    private MessageType type;
 
 }

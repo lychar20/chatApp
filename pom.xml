@@ -101,6 +101,12 @@
 			<version>6.1.2</version>
 		</dependency>
 
+		<!-- Dépendance pour le Direct Chat -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+
 		<!-- Dépendances pour la sécurité API (Token JWT) -->
 <!--		<dependency>-->
 <!--			<groupId>io.jsonwebtoken</groupId>-->
