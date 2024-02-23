@@ -42,5 +42,16 @@ public class ChatController {
         return chatMessage;
     }
 
+    @GetMapping(UrlRoute.URL_SALON_NAME)
+    public ModelAndView show(
+            @PathVariable String slug,
+            ModelAndView mav
+    ){
+        mav.setViewName("chatMessage/index");
+
+        mav.addObject("categoryChoice", categoryService.findBySlug(slug));
+        return mav;
+    }
+
 
 }

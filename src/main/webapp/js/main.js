@@ -33,7 +33,7 @@ function init(event) {
         stompClient.subscribe('/'+ category.value.trim() +'/public', onMessageReceived);
 
         // Tell your username to the server
-        stompClient.send("/app/chat.addUser",
+        stompClient.send("/app/chat.addUser/"+category.value.trim(),
             {},
             JSON.stringify({ sender: username, type: 'JOIN' })
         )
