@@ -17,6 +17,7 @@
         <script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
         <script type="text/javascript" src="${contextPath}/js/alert.js"></script>
         <script type="text/javascript" src="${contextPath}/js/multiple-select.js"></script>
+        <script type="text/javascript" src="${contextPath}/js/main.js"></script>
     </head>
     <body>
 
