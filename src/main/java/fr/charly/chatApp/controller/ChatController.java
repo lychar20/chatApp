@@ -5,6 +5,7 @@ import fr.charly.chatApp.entity.ChatMessage;
 import fr.charly.chatApp.mapping.UrlRoute;
 import fr.charly.chatApp.service.CategoryService;
 import lombok.AllArgsConstructor;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -20,34 +21,25 @@ public class ChatController {
 
     private CategoryService categoryService;
 
-    @MessageMapping("/chat.sendMessage")
-    @SendTo("/topic/public")
+    @MessageMapping("/chat.sendMessage/{categorySlug")
+    @SendTo("/{categorySlug}/public")
     public ChatMessage sendMessage(
+            @DestinationVariable String categorySlug,
             @Payload ChatMessage chatMessage
     ) {
         return chatMessage;
     }
 
-    @MessageMapping("/chat.addUser")
-    @SendTo("/topic/public")
+    @MessageMapping("/chat.addUser/{categorySlug}")
+    @SendTo("/{categorySlug}/public")
     public ChatMessage addUser(
+            @DestinationVariable String categorySlug,
             @Payload ChatMessage chatMessage,
             SimpMessageHeaderAccessor headerAccessor
     ) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
-    }
-
-    @GetMapping(UrlRoute.URL_SALON_NAME)
-    public ModelAndView show(
-            @PathVariable String slug,
-            ModelAndView mav
-    ){
-        mav.setViewName("chatMessage/index");
-
-        mav.addObject("categoryChoice", categoryService.findBySlug(slug));
-        return mav;
     }
 
 

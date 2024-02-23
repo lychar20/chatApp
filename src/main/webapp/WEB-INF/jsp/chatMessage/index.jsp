@@ -18,9 +18,13 @@
             <div class="form-group">
                 <div class="input-group clearfix">
                     <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button class="primary" send-message>Send</button>
+                    <button class="primary" id="sendMessage">Send</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+<%@ include file="../../jsp/footer.jsp" %>
