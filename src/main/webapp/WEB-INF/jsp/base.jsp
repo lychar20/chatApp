@@ -9,16 +9,18 @@
 %>
 
 <html>
-    <head>
-        <title>${title}</title>
-        <link href="${contextPath}/css/main.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-        <script type="text/javascript" src="${contextPath}/js/init-sortable.js"></script>
-        <script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
-        <script type="text/javascript" src="${contextPath}/js/alert.js"></script>
-        <script type="text/javascript" src="${contextPath}/js/multiple-select.js"></script>
-        <script type="text/javascript" src="${contextPath}/js/main.js"></script>
-    </head>
+<head>
+    <title>${title}</title>
+    <link href="${contextPath}/css/main.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="${contextPath}/js/init-sortable.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/alert.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/multiple-select.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script type="text/javascript" src="${contextPath}/js/main.js"></script>
+</head>
     <body>
 
     <security:authorize access="isAuthenticated()">

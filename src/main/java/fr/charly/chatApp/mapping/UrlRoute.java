@@ -9,5 +9,7 @@ public class UrlRoute {
 
     public final static String URL_COMMENT_MESSAGE_MAPPING = "/chat.addUser";
     public final static String URL_COMMENT_SEND_TO = "/topic.public";
+    public final static String URL_SALON_CHAT = "/chat";
+    public final static String URL_SALON_NAME = URL_SALON_CHAT + "{name}";
 
 }
