@@ -21,8 +21,10 @@ public class ChatController {
 
     private CategoryService categoryService;
 
-    @MessageMapping("/chat.sendMessage/{categorySlug")
-    @SendTo("/{categorySlug}/public")
+
+    // Rajouter les Slugs pour avoir la catégories
+    @MessageMapping("/chat.sendMessage/{categorySlug}")
+    @SendTo("/topic/public/{categorySlug}")
     public ChatMessage sendMessage(
             @DestinationVariable String categorySlug,
             @Payload ChatMessage chatMessage
@@ -30,8 +32,11 @@ public class ChatController {
         return chatMessage;
     }
 
+    // Rajouter le slug pour avoir la category
+    // le mettre dans le header pour pouvoir le passer à l'event de deco
+    // pour séparer les chats
     @MessageMapping("/chat.addUser/{categorySlug}")
-    @SendTo("/{categorySlug}/public")
+    @SendTo("/topic/public/{categorySlug}")
     public ChatMessage addUser(
             @DestinationVariable String categorySlug,
             @Payload ChatMessage chatMessage,
@@ -39,8 +44,10 @@ public class ChatController {
     ) {
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
+        headerAccessor.getSessionAttributes().put("category", categorySlug);
         return chatMessage;
     }
+
 
     @GetMapping(UrlRoute.URL_SALON_NAME)
     public ModelAndView show(
@@ -52,6 +59,7 @@ public class ChatController {
         mav.addObject("categoryChoice", categoryService.findBySlug(slug));
         return mav;
     }
-
-
 }
+
+
+

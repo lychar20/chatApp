@@ -3,7 +3,7 @@
 
 
 <div>
-    <!-- pour avoir le username dans le js -->
+    <!-- pour avoir le username et la category dans le js -->
     <input type="text" id="name" value="${userLogged.nickname}" class="d-none"/>
     <input type="text" id="categoryChoice" value="${categoryChoice.slug}" class="d-none"/>
 
@@ -14,7 +14,7 @@
         </ul>
 
         <!-- formulaire d'envoie de message -->
-        <div id="messageForm" name="messageForm">
+        <div>
             <div class="form-group">
                 <div class="input-group clearfix">
                     <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>

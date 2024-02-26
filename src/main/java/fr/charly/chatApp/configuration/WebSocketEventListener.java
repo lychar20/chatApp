@@ -21,13 +21,17 @@ public class WebSocketEventListener {
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
         StompHeaderAccessor headerAccessor = StompHeaderAccessor.wrap(event.getMessage());
         String username = (String) headerAccessor.getSessionAttributes().get("username");
-        if (username != null) {
+
+        // rajouter la catégories pour séparer les chats
+        String category = (String) headerAccessor.getSessionAttributes().get("category");
+
+        if (username != null && category != null) {
             log.info("user disconnected: {}", username);
             var chatMessage = ChatMessage.builder()
                     .type(MessageType.LEAVE)
                     .sender(username)
                     .build();
-            messagingTemplate.convertAndSend("/topic/public", chatMessage);
+            messagingTemplate.convertAndSend("/topic/public/"+category, chatMessage);
         }
     }
 
