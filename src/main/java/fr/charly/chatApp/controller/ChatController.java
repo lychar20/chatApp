@@ -1,9 +1,13 @@
 package fr.charly.chatApp.controller;
 
 
+import ch.qos.logback.classic.util.LogbackMDCAdapter;
+import fr.charly.chatApp.entity.Category;
 import fr.charly.chatApp.entity.ChatMessage;
+import fr.charly.chatApp.entity.User;
 import fr.charly.chatApp.mapping.UrlRoute;
 import fr.charly.chatApp.service.CategoryService;
+import fr.charly.chatApp.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -15,11 +19,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+import java.util.Map;
+
 @AllArgsConstructor
 @Controller
 public class ChatController {
 
     private CategoryService categoryService;
+
+
 
 
     // Rajouter les Slugs pour avoir la catégories
@@ -42,9 +51,11 @@ public class ChatController {
             @Payload ChatMessage chatMessage,
             SimpMessageHeaderAccessor headerAccessor
     ) {
+
         // Add username in web socket session
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         headerAccessor.getSessionAttributes().put("category", categorySlug);
+
         return chatMessage;
     }
 

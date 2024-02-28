@@ -12,4 +12,9 @@ public class UrlRoute {
     public final static String URL_SALON_CHAT = "/chat";
     public final static String URL_SALON_NAME = URL_SALON_CHAT + "/{slug}";
 
+    public final static String URL_FORUM = "/forum";
+
+    public final static String URL_FORUM_NEW = URL_FORUM + "/nouveau";
+    public final static String URL_FORUM_NAME = URL_FORUM + "/{slug}";
+
 }

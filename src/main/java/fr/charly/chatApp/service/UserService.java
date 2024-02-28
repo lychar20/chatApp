@@ -1,6 +1,7 @@
 package fr.charly.chatApp.service;
 
 import fr.charly.chatApp.DTO.RegisterPostDTO;
+import fr.charly.chatApp.entity.Category;
 import fr.charly.chatApp.entity.Chatter;
 import fr.charly.chatApp.entity.User;
 import fr.charly.chatApp.entity.Moderator;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -40,6 +42,9 @@ public class UserService implements DAOFindByIdInterface<User>, UserDetailsServi
         return userRepository.findByNickname(nickname)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
+
+
 
 
     public Chatter create(RegisterPostDTO registerPostDTO) {

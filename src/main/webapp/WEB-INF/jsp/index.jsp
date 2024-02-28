@@ -4,7 +4,7 @@
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
 <div class="container">
-    <h1>Choissisez vos sujets de discussion</h1>
+    <h1>Choissisez votre CHAT de discussion</h1>
 </div>
 
 
@@ -26,5 +26,21 @@
 
 
 
+<h1>Choissisez votre Forum de discussion</h1>
+
+<div class="row">
+    <c:forEach items="${categoryChoice}" var="category">
+        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+            <%@ include file="component/entity/discussion-card.jsp" %>
+        </div>
+    </c:forEach>
+</div>
+
+
+<div class="text-center">
+    <a href="${UrlRoute.URL_FORUM_NEW}" class="btn-link">
+        Créer un chat
+    </a>
+</div>
 
 <%@ include file="footer.jsp" %>

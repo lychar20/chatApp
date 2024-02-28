@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -28,6 +30,7 @@ public abstract class User implements UserDetails {
 
     @Column(nullable = false)
     protected String password;
+
 
 
     @Override

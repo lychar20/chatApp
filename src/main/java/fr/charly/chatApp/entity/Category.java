@@ -10,6 +10,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,8 +37,12 @@ public class Category implements SluggerInterface, NomenclatureInterface {
     @ManyToMany
     private List<Favorites> favorites = new ArrayList<>();
 
+
     @Override
     public String getField() {
         return name;
     }
+
+
+
 }
