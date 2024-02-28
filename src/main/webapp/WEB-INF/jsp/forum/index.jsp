@@ -11,6 +11,12 @@
             <f:errors path="title" cssClass="invalid-feedback"/>
         </div>
 
+        <div class="form-group ${status.error ? 'has-error' : ''}">
+            <f:input type="text" path="category" class="form-control" placeholder="Category"
+                     autofocus="true"/>
+            <f:errors path="category" cssClass="invalid-feedback"/>
+        </div>
+
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </f:form>
 </div>

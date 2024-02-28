@@ -1,6 +1,7 @@
 package fr.charly.chatApp.DTO;
 
 
+import fr.charly.chatApp.entity.Category;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,6 +18,9 @@ public class ThreadDTO {
 
     @NotBlank(message = "Please, give a proper name")
     private String title;
+
+    @NotBlank
+    private Category category;
 
 
 }

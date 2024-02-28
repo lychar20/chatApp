@@ -1,11 +1,13 @@
 package fr.charly.chatApp.controller;
 
 import fr.charly.chatApp.DTO.ThreadDTO;
+import fr.charly.chatApp.entity.Thread;
 import fr.charly.chatApp.mapping.UrlRoute;
 import fr.charly.chatApp.service.CategoryService;
 import fr.charly.chatApp.service.ThreadService;
 import fr.charly.chatApp.utils.FlashMessage;
 import fr.charly.chatApp.utils.FlashMessageBuilder;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -24,23 +26,37 @@ public class ThreadController {
 
 private ThreadService threadService;
 
+
+
+    @GetMapping(UrlRoute.URL_FORUM_NEW)
+    public ModelAndView creat(ModelAndView mav) {
+        mav.setViewName("forum/index");
+        mav.addObject("threadDTO", new ThreadDTO());
+        return mav;
+    }
+
     @PostMapping(UrlRoute.URL_FORUM_NEW)
     public ModelAndView create(
-                              ModelAndView mav,
-                                RedirectAttributes redirectAttributes,
-                              @ModelAttribute("threadDTO") ThreadDTO threadDTO
+                            ModelAndView mav,
+                            @Valid @ModelAttribute("threadDTO") ThreadDTO threadDTO,
+                            BindingResult result,
+                            RedirectAttributes redirectAttributes
     ) {
+        if (result.hasErrors()) {
+            mav.setViewName("forum/index"); //"vue" avant mais wrong
+            return mav;
+        }
 
-        if (threadService.createThread(threadDTO) != null) {
+
+        Thread thread = threadService.createThread(threadDTO);
+
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
                 new FlashMessage(
                         "success",
                         "Votre fil a été créé avec succès !"
                 ));
-        }
-
-        mav.setViewName("redirect:" + UrlRoute.URL_FORUM+ "/" + threadService.createThread(threadDTO));
+        mav.setViewName("redirect:" + UrlRoute.URL_FORUM+ "/" + thread.getSlug());
         return mav;
     }
 

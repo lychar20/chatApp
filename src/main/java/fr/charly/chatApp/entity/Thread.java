@@ -1,5 +1,7 @@
 package fr.charly.chatApp.entity;
 
+import fr.charly.chatApp.entity.interfaces.NomenclatureInterface;
+import fr.charly.chatApp.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,13 +17,15 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Thread {
+public class Thread implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     private String title;
+
+    private String slug;
 
     private Date createdAt;
 
@@ -31,4 +35,9 @@ public class Thread {
     @OneToMany(mappedBy = "thread")
     private List<Comment> comments = new ArrayList<>();
 
+
+    @Override
+    public String getField() {
+        return title;
+    }
 }
