@@ -24,14 +24,14 @@
     <body>
 
     <security:authorize access="isAuthenticated()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-around">
         <div class="row w-100">
-            <div class="col-3">
+            <div class="col-7">
                 <a class="navbar-brand ms-3" href="${contextPath}/">
-                    <i class="fa-brands fa-steam fa-3x"></i>
+                    <i class="fa-solid fa-hand-holding-heart fa-3x"></i>
                 </a>
             </div>
-            <div class="col-5">
+            <!--<div class="col-5">
                 <div class="main-container p-2">
                     <div class="d-flex">
                         <input type="text"
@@ -46,7 +46,7 @@
                     <div class="search-response-container">
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="col-4">
                 <div class="d-flex justify-content-end">
                             <span class="ms-2">

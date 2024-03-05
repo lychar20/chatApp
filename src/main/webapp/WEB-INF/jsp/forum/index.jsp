@@ -11,11 +11,23 @@
             <f:errors path="title" cssClass="invalid-feedback"/>
         </div>
 
-        <div class="form-group ${status.error ? 'has-error' : ''}">
-            <f:input type="text" path="category" class="form-control" placeholder="Category"
-                     autofocus="true"/>
+
+        <div class="col-md-6 col-sm-12">
+            <f:label class="col-form-label" path="category">
+                Category
+            </f:label>
+            <input class="form-control" data-multiple-select-input="category" />
+            <f:select path="category"
+                      items="${categories}"
+                      cssClass="form-select"
+                      itemLabel="name"
+                      data-multiple-select="category"
+            >
+            </f:select>
             <f:errors path="category" cssClass="invalid-feedback"/>
         </div>
+        </div>
+
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </f:form>

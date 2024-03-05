@@ -3,44 +3,31 @@
 <c:set var="title" scope="request" value="???????????"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
-<div class="container">
-    <h1>Choissisez votre CHAT de discussion</h1>
+<div class="container h-50 p-5">
+    <h1 class="titleChat text-center">Choissisez votre channel de discussion</h1>
 </div>
 
 
-<div class="row">
-    <c:forEach items="${categoryChoice}" var="category">
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-            <%@ include file="component/entity/discussion-card.jsp" %>
+<div class="row d-flex d-flex justify-content-around  ">
+        <a class="lienChoixIndex col-lg-3 col-md-6 col-sm-12 mt-4 border border-1 p-3" href="${UrlRoute.URL_SALON_CHAT}">
+        <div class=" boxChoice  text-center fs-1 fst-italic" title="Discutez en direct avec des gens">
+            Chat
         </div>
-    </c:forEach>
-</div>
-<security:authorize access="hasRole('MODERATOR')">
-    <div>
-        <a href="${UrlRoute.URL_EXPORT}" class="btn btn-link">
-            <i class="fa-solid fa-file-excel me-1"></i>
-            Télécharger export Excel
         </a>
+
+    <a class="lienChoixIndex col-lg-3 col-md-6 col-sm-12 mt-4 border border-1 p-3" href="${UrlRoute.URL_FORUM}">
+    <div class=" boxChoice  text-center fs-1 fst-italic" title="Ecrivez votre message dans le groupe dédié">
+        Forum
     </div>
-</security:authorize>
-
-
-
-<h1>Choissisez votre Forum de discussion</h1>
-
-<div class="row">
-    <c:forEach items="${categoryChoice}" var="category">
-        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
-            <%@ include file="component/entity/discussion-card.jsp" %>
-        </div>
-    </c:forEach>
-</div>
-
-
-<div class="text-center">
-    <a href="${UrlRoute.URL_FORUM_NEW}" class="btn-link">
-        Créer un chat
     </a>
+
 </div>
+
+
+
+
+
+
+
 
 <%@ include file="footer.jsp" %>
