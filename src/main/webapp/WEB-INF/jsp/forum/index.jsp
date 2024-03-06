@@ -12,19 +12,20 @@
         </div>
 
 
-        <div class="col-md-6 col-sm-12">
-            <f:label class="col-form-label" path="category">
+        <div class="col-md-6 col-sm-12 ">
+            <f:label class="col-form-label" path="categories">
                 Category
             </f:label>
             <input class="form-control" data-multiple-select-input="category" />
-            <f:select path="category"
+            <f:select path="categories"
+                      multiple="multiple"
                       items="${categories}"
                       cssClass="form-select"
                       itemLabel="name"
                       data-multiple-select="category"
             >
             </f:select>
-            <f:errors path="category" cssClass="invalid-feedback"/>
+            <f:errors path="categories" cssClass="invalid-feedback"/>
         </div>
         </div>
 

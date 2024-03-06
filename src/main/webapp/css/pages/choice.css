@@ -2,3 +2,8 @@
 .lienChoixIndex {
     border-color: yellow; !important;
 }
+
+.choiceChat {
+    margin-left: 5%;
+    margin-right: 5%;
+}

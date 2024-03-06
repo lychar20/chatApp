@@ -3,13 +3,13 @@
 <c:set var="title" scope="request" value="???????????"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
-<div class="container">
-    <h1>Choissisez votre Forum de discussion</h1>
+<div class="container ">
+    <h1 class="text-center">Choissisez votre Forum de discussion</h1>
 </div>
 
-<div class="row">
+<div class="row h-100 justify-content-center align-items-center">
     <c:forEach items="${categoryChoice}" var="category">
-        <div class=" choiceChat col-lg-4 col-md-6 col-sm-12 mt-4">
+        <div class=" choiceChat col-lg-4 col-md-6 col-sm-12 mt-4 ">
             <%@ include file="component/entity/discussion-card.jsp" %>
         </div>
     </c:forEach>
