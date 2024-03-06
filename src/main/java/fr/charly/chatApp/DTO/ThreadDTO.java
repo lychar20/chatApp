@@ -10,8 +10,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -22,7 +20,7 @@ public class ThreadDTO {
     private String title;
 
     @NotBlank
-    private List<Category> categories;
+    private Category category;
 
 
 }

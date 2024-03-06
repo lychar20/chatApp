@@ -17,7 +17,7 @@
                 Category
             </f:label>
             <input class="form-control" data-multiple-select-input="category" />
-            <f:select path="categories"
+            <f:select path="category"
                       multiple="multiple"
                       items="${categories}"
                       cssClass="form-select"
@@ -25,7 +25,7 @@
                       data-multiple-select="category"
             >
             </f:select>
-            <f:errors path="categories" cssClass="invalid-feedback"/>
+            <f:errors path="category" cssClass="invalid-feedback"/>
         </div>
         </div>
 

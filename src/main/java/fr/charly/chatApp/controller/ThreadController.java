@@ -29,9 +29,12 @@ private ThreadService threadService;
 
 
     @GetMapping(UrlRoute.URL_FORUM_NEW)
-    public ModelAndView creat(ModelAndView mav) {
+    public ModelAndView creat(ModelAndView mav,
+                              String slug
+                              ) {
         mav.setViewName("forum/index");
         mav.addObject("threadDTO", new ThreadDTO());
+        mav.addObject("category", threadService.findBySlug(slug));
         return mav;
     }
 
