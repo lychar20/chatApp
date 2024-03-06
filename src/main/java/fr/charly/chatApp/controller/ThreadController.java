@@ -25,16 +25,15 @@ import java.security.Principal;
 public class ThreadController {
 
 private ThreadService threadService;
+private CategoryService categoryService;
 
 
 
     @GetMapping(UrlRoute.URL_FORUM_NEW)
-    public ModelAndView creat(ModelAndView mav,
-                              String slug
-                              ) {
+    public ModelAndView creat(ModelAndView mav) {
         mav.setViewName("forum/index");
         mav.addObject("threadDTO", new ThreadDTO());
-        mav.addObject("category", threadService.findBySlug(slug));
+        mav.addObject("categories", categoryService.findAll());
         return mav;
     }
 

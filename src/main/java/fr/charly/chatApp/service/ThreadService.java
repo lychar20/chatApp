@@ -14,9 +14,11 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
-public class ThreadService implements DAOFindByIdInterface<Thread>, DAOFindBySlugInterface<Thread> {
+public class ThreadService implements DAOFindByIdInterface<Thread>, DAOFindBySlugInterface<Thread>, DAOFindAllInterface<Thread> {
 
     private ThreadRepository threadRepository;
     @Override
@@ -41,5 +43,13 @@ public class ThreadService implements DAOFindByIdInterface<Thread>, DAOFindBySlu
     }
 
 
+    @Override
+    public List<Thread> findAll() {
+        return threadRepository.findAll();
+    }
 
+    @Override
+    public List<Thread> findAllSorted() {
+        return null;
+    }
 }
