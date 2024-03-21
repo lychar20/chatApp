@@ -4,7 +4,7 @@
 
 <div class="container-login">
     <f:form method="POST" modelAttribute="threadDTO" class="form-signin">
-        <h1 class=" login text-center form-signin-heading">Créer votre fil</h1>
+        <h1 class=" login text-center form-signin-heading">Créez votre fil</h1>
         <div class="form-group ${status.error ? 'has-error' : ''}">
             <f:input type="text" path="title" class="form-control" placeholder="Title"
                      autofocus="true"/>
@@ -13,7 +13,7 @@
 
 
         <div class="col-md-6 col-sm-12 ">
-            <f:label class="col-form-label" path="categories">
+            <f:label class="col-form-label" path="category">
                 Category
             </f:label>
             <input class="form-control" data-multiple-select-input="category" />
@@ -33,6 +33,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </f:form>
 </div>
+
 
 
 

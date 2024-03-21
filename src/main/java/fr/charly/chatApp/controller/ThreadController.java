@@ -30,8 +30,8 @@ private CategoryService categoryService;
 
 
     @GetMapping(UrlRoute.URL_FORUM_NEW)
-    public ModelAndView creat(ModelAndView mav) {
-        mav.setViewName("forum/index");
+    public ModelAndView create(ModelAndView mav) {
+        mav.setViewName("forum/show");
         mav.addObject("threadDTO", new ThreadDTO());
         mav.addObject("categories", categoryService.findAll());
         return mav;
@@ -45,7 +45,7 @@ private CategoryService categoryService;
                             RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
-            mav.setViewName("forum/index"); //"vue" avant mais wrong
+            mav.setViewName("forum/show"); //"vue" avant mais wrong
             return mav;
         }
 
@@ -61,6 +61,10 @@ private CategoryService categoryService;
         mav.setViewName("redirect:" + UrlRoute.URL_FORUM+ "/" + thread.getSlug());
         return mav;
     }
+
+
+
+
 
 
 }

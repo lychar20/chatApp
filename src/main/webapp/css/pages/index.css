@@ -7,3 +7,13 @@
 .lienChoixIndex{
     text-decoration: none;
 }
+
+
+
+.testons{
+    background-image: url("https://hpnfrance.com/wp-content/uploads/2017/10/help.jpg") ;
+    height: 80%;
+    background-size: cover;
+    //background-repeat: no-repeat;
+
+}

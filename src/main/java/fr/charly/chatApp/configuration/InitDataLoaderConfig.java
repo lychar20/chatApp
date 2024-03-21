@@ -23,6 +23,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     private Slugger slugger;
 
 
+
     @Override
     public void run(String... args) throws Exception {
         createCategory();
@@ -58,5 +59,7 @@ public class InitDataLoaderConfig implements CommandLineRunner {
             }
         });
     }
+
+
 
 }
