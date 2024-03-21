@@ -3,7 +3,7 @@
 
 
 
-<h1>Bienvenue sur le forum</h1>
+<h1>Bienvenue sur le forum </h1>
 
 
 <h2> Voyez les différents fils de discussion existant testmmmm</h2>

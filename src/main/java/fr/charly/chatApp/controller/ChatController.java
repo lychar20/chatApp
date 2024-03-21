@@ -96,10 +96,12 @@ public class ChatController {
 
 
     @GetMapping(UrlRoute.URL_FORUM_NAME)
-    public ModelAndView create(ModelAndView mav) {
+    public ModelAndView create(
+            @PathVariable String slug,
+            ModelAndView mav) {
         mav.setViewName("forum/show");
         mav.addObject("threadDTO", new ThreadDTO());
-        mav.addObject("categories", categoryService.findAll());
+        mav.addObject("categories", categoryService.findBySlug(slug));
         return mav;
     }
 
