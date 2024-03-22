@@ -1,6 +1,7 @@
 package fr.charly.chatApp.service;
 
 import fr.charly.chatApp.DTO.ThreadDTO;
+import fr.charly.chatApp.entity.Category;
 import fr.charly.chatApp.entity.Comment;
 import fr.charly.chatApp.entity.Thread;
 import fr.charly.chatApp.repository.CommentRepository;
@@ -36,8 +37,9 @@ public class ThreadService implements DAOFindByIdInterface<Thread>, DAOFindBySlu
     }
 
 
-    public Thread createThread(ThreadDTO threadDTO) {
+    public Thread createThread(ThreadDTO threadDTO, Category category) {
         Thread thread = new Thread();
+        thread.setCategory(category);
         thread.setTitle(threadDTO.getTitle());
         return threadRepository.saveAndFlush(thread);
     }

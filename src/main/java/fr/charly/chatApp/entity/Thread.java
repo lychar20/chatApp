@@ -29,6 +29,9 @@ public class Thread implements SluggerInterface {
 
     private Date createdAt;
 
+    @ManyToOne
+    private Category category;
+
     @ManyToMany
     private List<Follow> follows = new ArrayList<>();
 

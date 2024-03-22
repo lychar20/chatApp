@@ -19,8 +19,8 @@ public class ThreadDTO {
     @NotBlank(message = "Please, give a proper name")
     private String title;
 
-    @NotBlank
-    private Category category;
+//    @NotBlank
+//    private Category category;
 
 
 }

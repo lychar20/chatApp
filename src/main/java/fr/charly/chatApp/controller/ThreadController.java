@@ -39,6 +39,7 @@ private CategoryService categoryService;
 
     @PostMapping(UrlRoute.URL_FORUM_NEW)
     public ModelAndView create(
+                            @PathVariable String slug,
                             ModelAndView mav,
                             @Valid @ModelAttribute("threadDTO") ThreadDTO threadDTO,
                             BindingResult result,
@@ -49,8 +50,10 @@ private CategoryService categoryService;
             return mav;
         }
 
-
-        Thread thread = threadService.createThread(threadDTO);
+        Thread thread = threadService.createThread(
+                threadDTO,
+                categoryService.findBySlug(slug)
+                );
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",

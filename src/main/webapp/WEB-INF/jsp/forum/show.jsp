@@ -1,12 +1,21 @@
 <!-- <%@ include file="../../jsp/tag.jsp" %> -->
+<%@ page contentType="text/html;charset=UTF-8" %>
 <jsp:include flush="true" page="../base.jsp"/>
 
 
 
-<h1>Bienvenue sur le forum </h1>
+<h1>Bienvenue sur le forum ${category.name} </h1>
 
 
 <h2> Voyez les différents fils de discussion existant testmmmm</h2>
+
+<div class="row h-100 justify-content-center align-items-center">
+    <c:forEach items="${threadDTO.title}" var="titleThread">
+        <div class=" choiceChat col-lg-4 col-md-6 col-sm-12 mt-4 ">
+            <%@ include file="component/entity/thread-card.jsp" %>
+        </div>
+    </c:forEach>
+</div>
 
 
 <!-- pour pouvoir créer un fil de discussion -->
@@ -20,22 +29,6 @@
             <f:errors path="title" cssClass="invalid-feedback"/>
         </div>
 
-
-      <!--  <div class="col-md-6 col-sm-12 ">
-            <f:label class="col-form-label" path="category">
-                Category
-            </f:label>
-            <input class="form-control" data-multiple-select-input="category" />
-            <f:select path="category"
-                      multiple="multiple"
-                      items="${categories}"
-                      cssClass="form-select"
-                      itemLabel="name"
-                      data-multiple-select="category"
-            >
-            </f:select>
-            <f:errors path="category" cssClass="invalid-feedback"/>
-        </div> -->
 
 
 

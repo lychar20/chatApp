@@ -101,12 +101,13 @@ public class ChatController {
             ModelAndView mav) {
         mav.setViewName("forum/show");
         mav.addObject("threadDTO", new ThreadDTO());
-        mav.addObject("categories", categoryService.findBySlug(slug));
+        mav.addObject("category", categoryService.findBySlug(slug));
         return mav;
     }
 
     @PostMapping(UrlRoute.URL_FORUM_NAME)
     public ModelAndView create(
+            @PathVariable String slug,
             ModelAndView mav,
             @Valid @ModelAttribute("threadDTO") ThreadDTO threadDTO,
             BindingResult result,
@@ -118,7 +119,9 @@ public class ChatController {
         }
 
 
-        Thread thread = threadService.createThread(threadDTO);
+        Thread thread = threadService.createThread(
+                threadDTO,
+                categoryService.findBySlug(slug));
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
@@ -126,7 +129,7 @@ public class ChatController {
                         "success",
                         "Votre fil a été créé avec succès !"
                 ));
-        mav.setViewName("redirect:" + UrlRoute.URL_FORUM+ "/" + thread.getSlug());
+        mav.setViewName("redirect:" + UrlRoute.URL_FORUM+ "/" + slug);
         return mav;
     }
 

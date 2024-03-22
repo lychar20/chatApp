@@ -37,6 +37,9 @@ public class Category implements SluggerInterface, NomenclatureInterface {
     @ManyToMany
     private List<Favorites> favorites = new ArrayList<>();
 
+    @OneToMany (mappedBy = "category")
+    private List<Thread> threads = new ArrayList<>();
+
 
     @Override
     public String getField() {
