@@ -9,13 +9,16 @@
 
 <h2> Voyez les différents fils de discussion existant testmmmm</h2>
 
+
+
 <div class="row h-100 justify-content-center align-items-center">
-    <c:forEach items="${threadDTO.title}" var="titleThread">
+    <c:forEach items="${category.threads}" var="thread">
         <div class=" choiceChat col-lg-4 col-md-6 col-sm-12 mt-4 ">
             <%@ include file="component/entity/thread-card.jsp" %>
         </div>
     </c:forEach>
 </div>
+
 
 
 <!-- pour pouvoir créer un fil de discussion -->
