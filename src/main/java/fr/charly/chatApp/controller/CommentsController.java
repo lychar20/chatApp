@@ -42,7 +42,7 @@ private CommentService commentService;
 
     @PostMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
     public ModelAndView create(
-            @PathVariable String slug,
+            @PathVariable String threadSlug,
             ModelAndView mav,
             @Valid @ModelAttribute("commentDTO") CommentDTO commentDTO,
             BindingResult result,
@@ -56,7 +56,7 @@ private CommentService commentService;
 
         Comment comment = commentService.createComment(
                 commentDTO,
-                threadService.findBySlug(slug));
+                threadService.findBySlug(threadSlug));
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
@@ -64,7 +64,7 @@ private CommentService commentService;
                         "success",
                         "Votre message a été créé avec succès !"
                 ));
-        mav.setViewName("redirect:" + UrlRoute.URL_FORUM_NAME+ "/" + slug);
+        mav.setViewName("redirect:" + UrlRoute.URL_FORUM_NAME+ "/" + threadSlug);
         return mav;
     }
 
