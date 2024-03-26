@@ -114,7 +114,7 @@ public class ChatController {
             RedirectAttributes redirectAttributes
     ) {
         if (result.hasErrors()) {
-            mav.setViewName("forum/show"); //"vue" avant mais wrong
+            mav.setViewName("forum/show");
             return mav;
         }
 

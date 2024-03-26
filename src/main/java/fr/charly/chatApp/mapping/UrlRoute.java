@@ -17,4 +17,6 @@ public class UrlRoute {
     public final static String URL_FORUM_NEW = URL_FORUM + "/nouveau";
     public final static String URL_FORUM_NAME = URL_FORUM + "/{slug}";
 
+    public final static String URL_FORUM_NAME_COMMENTS = URL_FORUM_NAME + "/{slug}";
+
 }

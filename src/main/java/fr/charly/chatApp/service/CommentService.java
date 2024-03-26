@@ -1,6 +1,10 @@
 package fr.charly.chatApp.service;
 
+import fr.charly.chatApp.DTO.CommentDTO;
+import fr.charly.chatApp.DTO.ThreadDTO;
+import fr.charly.chatApp.entity.Category;
 import fr.charly.chatApp.entity.Comment;
+import fr.charly.chatApp.entity.Thread;
 import fr.charly.chatApp.repository.CommentRepository;
 import fr.charly.chatApp.service.interfaces.DAOFindByIdInterface;
 import jakarta.persistence.EntityNotFoundException;
@@ -25,25 +29,12 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
 
 
 
-//    @MessageMapping("/chat.sendMessage")
-//    @SendTo("/topic/public")
-    public Comment sendMessage(
-            @Payload Comment comment
-    ) {
-        return comment;
+    public Comment createComment(CommentDTO commentDTO, Thread thread) {
+        Comment comment = new Comment();
+        comment.setThread(thread);
+        comment.setContent(commentDTO.getDescription());
+        return commentRepository.saveAndFlush(comment);
     }
-
-//    @MessageMapping("/chat.addUser")
-//    @SendTo("/topic/public")
-    public Comment addUser(
-            @Payload Comment comment,
-            SimpMessageHeaderAccessor headerAccessor
-    ) {
-        // Add username in web socket session
-        headerAccessor.getSessionAttributes().put("username", comment.getChatter());
-        return comment;
-    }
-
 
 
 }

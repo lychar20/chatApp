@@ -14,7 +14,7 @@
 <div class="row h-100 justify-content-center align-items-center">
     <c:forEach items="${category.threads}" var="thread">
         <div class=" choiceChat col-lg-4 col-md-6 col-sm-12 mt-4 ">
-            <%@ include file="component/entity/thread-card.jsp" %>
+            <%@ include file="../component/entity/thread-card.jsp" %>
         </div>
     </c:forEach>
 </div>

@@ -16,10 +16,5 @@
 </div>
 
 
-<div class="text-center">
-    <a href="${UrlRoute.URL_FORUM_NEW}" class="btn-link">
-        Créer un fil de discussion
-    </a>
-</div>
 
 <%@ include file="footer.jsp" %>
