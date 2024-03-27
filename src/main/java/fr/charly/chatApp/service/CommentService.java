@@ -26,6 +26,7 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
 
     private CommentRepository commentRepository;
     private UserService userService;
+    private ThreadService threadService;
 
     @Override
     public Comment findById(Long id) {

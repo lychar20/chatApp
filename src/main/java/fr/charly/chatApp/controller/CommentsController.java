@@ -11,6 +11,9 @@ import fr.charly.chatApp.service.ThreadService;
 import fr.charly.chatApp.utils.FlashMessage;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +38,18 @@ private CommentService commentService;
     @GetMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
     public ModelAndView create(
             @PathVariable String threadSlug,
-            ModelAndView mav) {
+            ModelAndView mav,
+            @ModelAttribute("flashMessage") FlashMessage flashMessage,
+            @PageableDefault(
+                    size = 6, // nb Element par page
+                    sort = { "createdAt" }, // order by
+                    direction = Sort.Direction.DESC
+            ) Pageable pageable
+            ) {
         mav.setViewName("comments/index");
         mav.addObject("commentDTO", new CommentDTO());
         mav.addObject("thread", threadService.findBySlug(threadSlug));
+        mav.addObject("pageComments", commentService.findAllByThread(thread, pageable));
         return mav;
     }
 

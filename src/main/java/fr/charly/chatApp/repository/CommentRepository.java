@@ -1,6 +1,7 @@
 package fr.charly.chatApp.repository;
 
 import fr.charly.chatApp.entity.Comment;
+import fr.charly.chatApp.entity.Thread;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
