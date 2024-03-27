@@ -4,6 +4,7 @@ import fr.charly.chatApp.entity.enumo.MessageType;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Comment {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
     private Date updatedAt = null;
 
@@ -35,6 +36,9 @@ public class Comment {
 
     @ManyToOne
     private Chatter chatter;
+
+    @ManyToOne
+    private Moderator moderator;
 
     @ManyToOne
     private Thread thread;

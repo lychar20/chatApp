@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 @Controller
 @AllArgsConstructor
 public class CommentsController {
@@ -32,11 +34,11 @@ private CommentService commentService;
 
     @GetMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
     public ModelAndView create(
-            @PathVariable String slug,
+            @PathVariable String threadSlug,
             ModelAndView mav) {
-        mav.setViewName("forum/show");
+        mav.setViewName("comments/index");
         mav.addObject("commentDTO", new CommentDTO());
-        mav.addObject("thread", threadService.findBySlug(slug));
+        mav.addObject("thread", threadService.findBySlug(threadSlug));
         return mav;
     }
 
@@ -44,6 +46,7 @@ private CommentService commentService;
     public ModelAndView create(
             @PathVariable String threadSlug,
             ModelAndView mav,
+            Principal principal,
             @Valid @ModelAttribute("commentDTO") CommentDTO commentDTO,
             BindingResult result,
             RedirectAttributes redirectAttributes
@@ -56,7 +59,9 @@ private CommentService commentService;
 
         Comment comment = commentService.createComment(
                 commentDTO,
-                threadService.findBySlug(threadSlug));
+                threadService.findBySlug(threadSlug),
+                principal.getName()
+                );
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
