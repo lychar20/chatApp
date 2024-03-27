@@ -47,8 +47,8 @@ private CommentService commentService;
             ) Pageable pageable
             ) {
         mav.setViewName("comments/index");
-        mav.addObject("commentDTO", new CommentDTO());
-        mav.addObject("thread", threadService.findBySlug(threadSlug));
+        Thread thread = threadService.findBySlug(threadSlug);
+        mav.addObject("thread", thread);
         mav.addObject("pageComments", commentService.findAllByThread(thread, pageable));
         return mav;
     }
