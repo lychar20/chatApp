@@ -7,7 +7,7 @@
 
 
  <h3 class=" my-5">Les Messages
-            <a href="${UrlRoute.URL_FORUM_NAME_COMMENTS}" class="ms-2" title="Ajouter un message">
+            <a href="${UrlRoute.URL_FORUM}/${category.slug}/${thread.slug}" class="ms-2" title="Ajouter un message">
                 <i class="fa fa-circle-plus link-green"></i>
             </a>
 
