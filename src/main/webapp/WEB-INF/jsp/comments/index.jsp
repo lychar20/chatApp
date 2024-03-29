@@ -6,12 +6,38 @@
 <h1> Voici les messages liés aux thread choisi</h1>
 
 
- <h3 class=" my-5">Les Messages
-            <a href="${UrlRoute.URL_FORUM}/${category.slug}/${thread.slug}" class="ms-2" title="Ajouter un message">
-                <i class="fa fa-circle-plus link-green"></i>
-            </a>
+ <h3 class=" my-5">Les Messages </h3>
 
-    </h3>
+                 <button class="ms-2 btn btn-link"
+                         title="Ajouter un message"
+                         data-hide-show-button="formComment"
+                 >
+                     <i class="fa fa-pen fa-2x"></i>
+                 </button>
+
+
+    <div class="my-3 d-none"
+                  data-hide-show-container="formComment"
+             >
+                 <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                         action="${currentUrl}"
+                         method="post"
+                         modelAttribute="commentDTO"
+                 >
+                     <div class="mb-3 row">
+                         <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                         <div class="col-sm-10">
+                             <f:textarea cssClass="form-control" path="description"/>
+                             <f:errors path="description" cssClass="invalid-feedback"/>
+                         </div>
+                     </div>
+
+                     <f:button type="submit" class="btn btn-success">
+                         <i class="fa fa-check"></i> Ajouter
+                     </f:button>
+                 </f:form>
+      </div>
+
 
 
  <div class="d-flex justify-content-between">
