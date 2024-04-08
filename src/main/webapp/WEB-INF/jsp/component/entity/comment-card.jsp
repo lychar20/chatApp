@@ -15,9 +15,11 @@
             <div class="d-flex">
 
 
-
+            <security:authorize access="hasRole('MODERATOR')">
             <cite title="Source Title">En attente de moderation ⌛</cite>
-            <c:if test="">
+            </security:authorize>
+
+            <c:if test="${UrlRoute.URL_FORUM_COMMENT_MODERATE}/${id}">
                 <a class="btn btn-link rating-5"
                    href=""
                    title="Refuser"
