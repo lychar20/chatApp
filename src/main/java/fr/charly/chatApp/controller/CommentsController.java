@@ -9,6 +9,7 @@ import fr.charly.chatApp.service.CategoryService;
 import fr.charly.chatApp.service.CommentService;
 import fr.charly.chatApp.service.ThreadService;
 import fr.charly.chatApp.utils.FlashMessage;
+import fr.charly.chatApp.utils.FlashMessageBuilder;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,8 @@ public class CommentsController {
 private ThreadService threadService;
 private CategoryService categoryService;
 private CommentService commentService;
+
+private FlashMessageBuilder flashMessageBuilder;
 
 
 
@@ -87,6 +90,21 @@ private CommentService commentService;
 
 
 
+    @GetMapping(UrlRoute.URL_FORUM_COMMENT_MODERATE_PATH)
+    public ModelAndView moderate(
+            @PathVariable Long id,
+            @PathVariable String threadSlug,
+            ModelAndView modelAndView,
+            RedirectAttributes redirectAttributes,
+            Principal principal
+    ) {
+        commentService.moderateComment(principal.getName(), id);
+        FlashMessage flashMessage = flashMessageBuilder.createSuccessFlashMessage("Le commentaire a bien été modéré !");
+
+        redirectAttributes.addFlashAttribute("flashMessage", flashMessage);
+        modelAndView.setViewName("redirect:" + UrlRoute.URL_FORUM_NAME+ "/" + threadSlug);
+        return modelAndView;
+    }
 
 
 

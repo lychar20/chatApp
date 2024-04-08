@@ -32,13 +32,14 @@
         <p class="comment-description">
 
         <a href="">
-            ${jspUtils.excerpt(comment.content, 209)}  test
+            ${jspUtils.excerpt(comment.content, 209)}
         </a>
 
         </p>
         <div class="d-flex justify-content-between">
             <p class="">
-                ${jspUtils.getStringRating(comment.responses)} / 20
+            nombre de responses
+
             </p>
             <a class="btn-link" href="">
 

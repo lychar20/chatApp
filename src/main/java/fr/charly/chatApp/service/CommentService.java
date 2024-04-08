@@ -2,9 +2,7 @@ package fr.charly.chatApp.service;
 
 import fr.charly.chatApp.DTO.CommentDTO;
 import fr.charly.chatApp.DTO.ThreadDTO;
-import fr.charly.chatApp.entity.Category;
-import fr.charly.chatApp.entity.Chatter;
-import fr.charly.chatApp.entity.Comment;
+import fr.charly.chatApp.entity.*;
 import fr.charly.chatApp.entity.Thread;
 import fr.charly.chatApp.repository.CommentRepository;
 import fr.charly.chatApp.service.interfaces.DAOFindByIdInterface;
@@ -50,4 +48,12 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
     }
 
 
-}
+    public void moderateComment(String nickname, Long id) {
+        Comment comment = findById(id);
+        comment.setModerator((Moderator) userService.findByNickname(nickname));
+        comment.setModeratedAt(LocalDateTime.now());
+        commentRepository.flush();
+    }
+
+
+    }

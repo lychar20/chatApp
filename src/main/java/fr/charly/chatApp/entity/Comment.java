@@ -26,6 +26,8 @@ public class Comment {
 
     private LocalDateTime createdAt;
 
+    private LocalDateTime moderatedAt;
+
     private Date updatedAt = null;
 
     @OneToMany

@@ -5,6 +5,10 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 
+<%@ page import="fr.charly.chatApp.utils.JspUtils" %>
+<%@ page import="fr.charly.chatApp.utils.DateUtils" %>
+
+
 <%-- Importe l'objet UrlRoute pour pouvoir l'utiliser partout dans les JSP --%>
 <%@ page import="fr.charly.chatApp.mapping.UrlRoute" %>
 
@@ -40,6 +44,7 @@
                User user = userService.findByNickname(request.getUserPrincipal().getName());
                request.setAttribute("userLogged", user);
            }
+            request.setAttribute("dateUtils", ctx.getBean(DateUtils.class));
             request.setAttribute("jspUtils", ctx.getBean(JspUtils.class));
    }
 

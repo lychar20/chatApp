@@ -1,13 +1,18 @@
 package fr.charly.chatApp.configuration;
 
 import fr.charly.chatApp.entity.Category;
+import fr.charly.chatApp.entity.Moderator;
+import fr.charly.chatApp.entity.User;
 import fr.charly.chatApp.entity.interfaces.NomenclatureInterface;
 import fr.charly.chatApp.repository.CategoryRepository;
+import fr.charly.chatApp.repository.UserRepository;
 import fr.charly.chatApp.service.CategoryService;
+import fr.charly.chatApp.service.UserService;
 import fr.charly.chatApp.utils.Slugger;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,14 +25,31 @@ public class InitDataLoaderConfig implements CommandLineRunner {
     private CategoryRepository categoryRepository;
     private CategoryService categoryService;
 
+    private UserRepository userRepository;
+    private UserService userService;
+
     private Slugger slugger;
+
+    private BCryptPasswordEncoder passwordEncoder;
 
 
 
     @Override
     public void run(String... args) throws Exception {
+        createModerator();
+        userRepository.flush();
         createCategory();
         categoryRepository.flush();
+    }
+
+
+    private void createModerator() {
+        User moderator = new Moderator();
+        moderator.setPassword(passwordEncoder.encode("12345678"));
+        moderator.setNickname("Simon");
+        moderator.setEmail("simon@gmail.com");
+        moderator.setId(9L);
+        userRepository.save(moderator);
     }
 
     private void createCategory() {
