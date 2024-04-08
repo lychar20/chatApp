@@ -6,11 +6,11 @@
         par <a class="btn-link" href="">${comment.chatter.nickname}</a>
     </p>
     <figcaption class="blockquote-footer text-center">
-        <c:if test="">
+        <c:if test="${not empty comment.moderator}">
             Modéré par <cite title="Source Title">${comment.moderator.nickname}</cite> -
             le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
         </c:if>
-        <c:if test="">
+        <c:if test="${empty comment.moderator}">
 
             <div class="d-flex">
 
