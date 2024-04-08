@@ -16,17 +16,21 @@
 
 
             <security:authorize access="hasRole('MODERATOR')">
+
             <cite title="Source Title">En attente de moderation ⌛</cite>
+
+
+                            <a class="btn btn-link rating-5"
+                               href="${UrlRoute.URL_FORUM}/${category.slug}/${thread.slug}/moderate/${comment.id}"
+                               title="Refuser"
+                            >
+                                <i class="fa-solid fa-xmark fa-2x"></i>
+                            </a>
+
+
             </security:authorize>
 
-            <c:if test="${UrlRoute.URL_FORUM_COMMENT_MODERATE}/${id}">
-                <a class="btn btn-link rating-5"
-                   href=""
-                   title="Refuser"
-                >
-                    <i class="fa-solid fa-xmark fa-2x"></i>
-                </a>
-            </c:if>
+
             </div>
         </c:if>
     </figcaption>
