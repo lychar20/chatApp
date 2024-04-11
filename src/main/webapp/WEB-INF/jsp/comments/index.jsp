@@ -54,6 +54,8 @@
             <%@ include file="../../jsp/component/sortable.jsp" %>
 
 
+        <security:authorize access="hasRole('MODERATOR')">
+
                 <div class="sort-filter mt-4 me-3">
                 <select class="form-select sortable-select">
                     <option value="all" data-filter-url="${currentUrl}">
@@ -71,7 +73,7 @@
                     </option>
                 </select>
             </div>
-
+        </security:authorize>
 
             <%@ include file="../../jsp/component/filter-reset.jsp" %>
         </div>

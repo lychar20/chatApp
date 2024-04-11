@@ -41,6 +41,7 @@ private FlashMessageBuilder flashMessageBuilder;
     @GetMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
     public ModelAndView create(
             @PathVariable String threadSlug,
+            Principal principal,
             ModelAndView mav,
             @ModelAttribute("flashMessage") FlashMessage flashMessage,
             @PageableDefault(
@@ -53,7 +54,7 @@ private FlashMessageBuilder flashMessageBuilder;
         Thread thread = threadService.findBySlug(threadSlug);
         mav.addObject("thread", thread);
         mav.addObject("commentDTO", new CommentDTO());
-        mav.addObject("pageComments", commentService.findAllByThread(thread, pageable));
+        mav.addObject("pageComments", commentService.getPageCommentOrdered(principal, thread, pageable));
         return mav;
     }
 
@@ -63,6 +64,7 @@ private FlashMessageBuilder flashMessageBuilder;
             ModelAndView mav,
             Principal principal,
             @Valid @ModelAttribute("commentDTO") CommentDTO commentDTO,
+            @PathVariable Long id,
             BindingResult result,
             RedirectAttributes redirectAttributes
     ) {
@@ -75,7 +77,8 @@ private FlashMessageBuilder flashMessageBuilder;
         Comment comment = commentService.createComment(
                 commentDTO,
                 threadService.findBySlug(threadSlug),
-                principal.getName()
+                principal.getName(),
+                id
                 );
 
         redirectAttributes.addFlashAttribute(
@@ -94,6 +97,7 @@ private FlashMessageBuilder flashMessageBuilder;
     public ModelAndView moderate(
             @PathVariable Long id,
             @PathVariable String threadSlug,
+            @PathVariable String slug,
             ModelAndView modelAndView,
             RedirectAttributes redirectAttributes,
             Principal principal
@@ -102,7 +106,7 @@ private FlashMessageBuilder flashMessageBuilder;
         FlashMessage flashMessage = flashMessageBuilder.createSuccessFlashMessage("Le commentaire a bien été modéré !");
 
         redirectAttributes.addFlashAttribute("flashMessage", flashMessage);
-        modelAndView.setViewName("redirect:" + UrlRoute.URL_FORUM_NAME+ "/" + threadSlug);
+        modelAndView.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug +  "/" + threadSlug);
         return modelAndView;
     }
 

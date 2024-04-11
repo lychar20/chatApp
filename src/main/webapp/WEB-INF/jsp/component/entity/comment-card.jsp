@@ -1,5 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 
+
+
+
+<script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
+
+
+
+
 <div class="main-comment-card w-100">
     <p class="text-center">
         Rédigé le ${dateUtils.getDateFormat(comment.createdAt, "dd/MM/yyyy")}
@@ -8,7 +16,7 @@
     <figcaption class="blockquote-footer text-center">
         <c:if test="${not empty comment.moderator}">
             Modéré par <cite title="Source Title">${comment.moderator.nickname}</cite> -
-            le ${dateUtils.getDateFormat(review.moderatedAt, "dd/MM/yyyy")}
+            le ${dateUtils.getDateFormat(comment.moderatedAt, "dd/MM/yyyy")}
         </c:if>
         <c:if test="${empty comment.moderator}">
 
@@ -21,7 +29,7 @@
 
 
                             <a class="btn btn-link rating-5"
-                               href="${UrlRoute.URL_FORUM}/${category.slug}/${thread.slug}/moderate/${comment.id}"
+                               href="${UrlRoute.URL_FORUM}/${thread.category.slug}/${thread.slug}/moderate/${comment.id}"
                                title="Refuser"
                             >
                                 <i class="fa-solid fa-xmark fa-2x"></i>
@@ -47,9 +55,40 @@
             nombre de responses
 
             </p>
-            <a class="btn-link" href="">
 
-            </a>
+
+           <button class="ms-2 btn btn-link"
+                                    title="Répondre"
+                                    data-hide-show-button="responseComment"
+                            >
+                                <i class="fa fa-pen fa-2x"></i>
+           </button>
+
+
+            <div class="my-3 d-none"
+                             data-hide-show-container="responseComment"
+                        >
+                            <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                                    action="${currentUrl}"
+                                    method="post"
+                                    modelAttribute="commentDTO"
+                            >
+                                <div class="mb-3 row">
+                                    <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                                    <div class="col-sm-10">
+                                        <f:textarea cssClass="form-control" path="description"/>
+                                        <f:errors path="description" cssClass="invalid-feedback"/>
+                                    </div>
+                                </div>
+
+                                <f:button type="submit" class="btn btn-success">
+                                    <i class="fa fa-check"></i> Ajouter
+                                </f:button>
+                            </f:form>
+                 </div>
+
+
+
         </div>
     </div>
 </div>
