@@ -87,7 +87,14 @@
                         <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
                             <%@ include file="../../jsp/component/entity/comment-card.jsp" %>
                         </div>
+
+
+
                     </c:forEach>
                 </div>
+
+
+
+
 
 <%@ include file="../../jsp/footer.jsp" %>

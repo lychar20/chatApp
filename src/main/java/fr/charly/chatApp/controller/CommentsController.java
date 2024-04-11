@@ -58,13 +58,19 @@ private FlashMessageBuilder flashMessageBuilder;
         return mav;
     }
 
-    @PostMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
+    @PostMapping(value = {
+            UrlRoute.URL_FORUM_NAME_COMMENTS,
+            UrlRoute.URL_FORUM_NAME_COMMENTS + "/{id}"
+    }) // l id est optionelle, le commentaire peux etre une reponse ou non, donc on mets 2 routes pour créer un commentaire
     public ModelAndView create(
             @PathVariable String threadSlug,
+            @PathVariable String slug,
+            @PathVariable(required = false) Long id, // l id est optionelle
+
             ModelAndView mav,
             Principal principal,
+
             @Valid @ModelAttribute("commentDTO") CommentDTO commentDTO,
-            @PathVariable Long id,
             BindingResult result,
             RedirectAttributes redirectAttributes
     ) {
@@ -73,13 +79,12 @@ private FlashMessageBuilder flashMessageBuilder;
             return mav;
         }
 
-
         Comment comment = commentService.createComment(
                 commentDTO,
                 threadService.findBySlug(threadSlug),
                 principal.getName(),
-                id
-                );
+                id != null ? id : -1 // si il y a une id on lui mets l id sinon on lui mets -1 pour qu il ne trouve rien comme commentaire parent (findById avec null ne marche pas)
+        );
 
         redirectAttributes.addFlashAttribute(
                 "flashMessage",
@@ -87,7 +92,8 @@ private FlashMessageBuilder flashMessageBuilder;
                         "success",
                         "Votre message a été créé avec succès !"
                 ));
-        mav.setViewName("redirect:" + UrlRoute.URL_FORUM_NAME+ "/" + threadSlug);
+
+        mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug);
         return mav;
     }
 

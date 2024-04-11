@@ -3,10 +3,6 @@
 
 
 
-<script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
-
-
-
 
 <div class="main-comment-card w-100">
     <p class="text-center">
@@ -57,35 +53,38 @@
             </p>
 
 
-           <button class="ms-2 btn btn-link"
-                                    title="Répondre"
-                                    data-hide-show-button="responseComment"
-                            >
-                                <i class="fa fa-pen fa-2x"></i>
-           </button>
+          <button class="ms-2 btn btn-link"
+                                              title="Répondre"
+                                              data-hide-show-button="responseComment${comment.id}"
+                                      >
+                                          <i class="fa fa-pen fa-2x"></i>
+                     </button>
 
 
-            <div class="my-3 d-none"
-                             data-hide-show-container="responseComment"
-                        >
-                            <f:form cssClass="col-md-8 col-sm-12 mx-auto"
-                                    action="${currentUrl}"
-                                    method="post"
-                                    modelAttribute="commentDTO"
-                            >
-                                <div class="mb-3 row">
-                                    <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
-                                    <div class="col-sm-10">
-                                        <f:textarea cssClass="form-control" path="description"/>
-                                        <f:errors path="description" cssClass="invalid-feedback"/>
-                                    </div>
-                                </div>
+                      <div class="my-3 d-none"
+                           data-hide-show-container="responseComment${comment.id}"
+                      >
+                          <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                                  action="${currentUrl}/${comment.id}"
+                                  method="post"
+                                  modelAttribute="commentDTO"
+                          >
+                              <div class="mb-3 row">
+                                  <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
+                                  <div class="col-sm-10">
+                                      <f:textarea cssClass="form-control" path="description"/>
+                                      <f:errors path="description" cssClass="invalid-feedback"/>
+                                  </div>
+                              </div>
 
-                                <f:button type="submit" class="btn btn-success">
-                                    <i class="fa fa-check"></i> Ajouter
-                                </f:button>
-                            </f:form>
-                 </div>
+                              <f:button type="submit" class="btn btn-success">
+                                  <i class="fa fa-check"></i> Ajouter
+                              </f:button>
+                          </f:form>
+                       </div>
+
+
+
 
 
 
