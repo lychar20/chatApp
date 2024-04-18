@@ -48,7 +48,7 @@
         </p>
         <div class="d-flex justify-content-between">
             <p class="">
-            nombre de responses
+            ${comment.responses.stream().filter(c -> c.moderator == null).count()} réponses
 
             </p>
 

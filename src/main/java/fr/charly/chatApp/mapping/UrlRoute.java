@@ -21,4 +21,8 @@ public class UrlRoute {
     public final static String URL_FORUM_COMMENT_MODERATE = URL_FORUM_NAME_COMMENTS + "/moderate" ;
     public final static String URL_FORUM_COMMENT_MODERATE_PATH = URL_FORUM_COMMENT_MODERATE + "/{id}" ;
 
+
+    public final static String URL_RESPONSES = "/responses";
+    public final static String URL_RESPONSES_COMMENT = URL_RESPONSES + "/{id}";
+
 }

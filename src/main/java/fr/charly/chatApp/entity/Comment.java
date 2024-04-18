@@ -30,7 +30,7 @@ public class Comment {
 
     private Date updatedAt = null;
 
-    @OneToMany
+    @OneToMany(mappedBy = "commentFrom")
     private List<Comment> responses;
 
     @ManyToOne

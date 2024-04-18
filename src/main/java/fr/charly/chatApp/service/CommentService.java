@@ -38,7 +38,7 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
 
 
     public Page<Comment> findAllByThread (Thread thread, Pageable pageable) {
-        return commentRepository.findAllByThreadAndModeratorIsNull( thread , pageable);
+        return commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull( thread , pageable);
     }
 
     public Comment createComment(CommentDTO commentDTO, Thread thread, String name, Long id) {
@@ -69,12 +69,12 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
 
     public Page<Comment> getPageCommentOrdered(Principal principal, Thread thread, Pageable pageable) {
         User user = userService.findByNickname(principal.getName());
-        Page<Comment> pageComments = commentRepository.findAllByThreadAndModeratorIsNull( thread , pageable);
+        Page<Comment> pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull( thread , pageable);
         if (user.isModerator()) {
             Sort.Order order = pageable.getSort().getOrderFor("moderator");
             if (order != null) {
                 if (order.isAscending()) {
-                    pageComments = commentRepository.findAllByThreadAndModeratorIsNull(thread, pageable);
+                    pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull(thread, pageable);
                 } else {
                     pageComments = commentRepository.findByThreadAndModeratorIsNotNull(thread, pageable);
                 }

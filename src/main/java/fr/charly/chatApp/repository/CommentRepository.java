@@ -15,7 +15,7 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Override
     Optional<Comment> findById(Long id);
 
-    Page<Comment> findAllByThreadAndModeratorIsNull(Thread thread, Pageable pageable);
+    Page<Comment> findAllByThreadAndModeratorIsNullAndCommentFromIsNull(Thread thread, Pageable pageable);
 
     Page<Comment> findByThreadAndModeratorIsNotNull(Thread thread,Pageable pageable);
     Page<Comment> findByThreadAndModeratorIsNull(Thread thread,Pageable pageable);
