@@ -56,43 +56,7 @@ private ThreadService threadService;
     }
 
 
-    @PostMapping(value = {
-            UrlRoute.URL_FORUM_NAME_COMMENTS + "/{id}"
-    })
-    public ModelAndView create(
-            @PathVariable String threadSlug,
-            @PathVariable String slug,
-            @PathVariable Long id,
 
-            ModelAndView mav,
-            Principal principal,
-
-            @Valid @ModelAttribute("commentDTO") CommentDTO commentDTO,
-            BindingResult result,
-            RedirectAttributes redirectAttributes
-    ) {
-        if (result.hasErrors()) {
-            mav.setViewName("response/show");
-            return mav;
-        }
-
-        Comment comment = commentService.createComment(
-                commentDTO,
-                threadService.findBySlug(threadSlug),
-                principal.getName(),
-                id
-        );
-
-        redirectAttributes.addFlashAttribute(
-                "flashMessage",
-                new FlashMessage(
-                        "success",
-                        "Votre message a été créé avec succès !"
-                ));
-
-        mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug);
-        return mav;
-    }
 
 
 

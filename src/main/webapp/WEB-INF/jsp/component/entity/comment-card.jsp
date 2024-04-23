@@ -48,8 +48,9 @@
         </p>
         <div class="d-flex justify-content-between">
             <p class="">
+                <a href="${UrlRoute.URL_FORUM}/${thread.category.slug}/${thread.slug}/responses/${comment.id}">
             ${comment.responses.stream().filter(c -> c.moderator == null).count()} réponses
-
+                </a>
             </p>
 
 
@@ -81,7 +82,7 @@
                                   <i class="fa fa-check"></i> Ajouter
                               </f:button>
                           </f:form>
-                       </div>
+                      </div>
 
 
 

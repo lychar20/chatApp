@@ -58,6 +58,8 @@ private FlashMessageBuilder flashMessageBuilder;
         return mav;
     }
 
+
+
     @PostMapping(value = {
             UrlRoute.URL_FORUM_NAME_COMMENTS,
             UrlRoute.URL_FORUM_NAME_COMMENTS + "/{id}"
@@ -92,6 +94,12 @@ private FlashMessageBuilder flashMessageBuilder;
                         "success",
                         "Votre message a été créé avec succès !"
                 ));
+
+        if (id != null) { // on le mets apres pour avoir le Message de Création
+            mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug + "/reponses/" + id);
+            // on mets un redirect pour avoir la bonne url pour lutilisateur
+            return mav;
+        }
 
         mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug);
         return mav;
