@@ -18,7 +18,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     Page<Comment> findAllByThreadAndModeratorIsNullAndCommentFromIsNull(Thread thread, Pageable pageable);
 
     Page<Comment> findByThreadAndModeratorIsNotNull(Thread thread,Pageable pageable);
+    Page<Comment> findAllByCommentFromAndModeratorIsNull(Comment commentParent , Pageable pageable);
+    Page<Comment> findAllByCommentFromAndModeratorIsNotNull(Comment commentParent , Pageable pageable);
     Page<Comment> findByThreadAndModeratorIsNull(Thread thread,Pageable pageable);
+    Page<Comment> findAllByThreadAndModeratorIsNotNullAndCommentFromIsNull(Thread thread,Pageable pageable);
 
     Page<Comment> findAllByChatterNickname(String nickname, Pageable pageable);
 }

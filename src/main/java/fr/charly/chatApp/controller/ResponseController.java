@@ -38,6 +38,7 @@ private ThreadService threadService;
     @GetMapping(UrlRoute.URL_RESPONSES_COMMENT)
     public ModelAndView show(
             @PathVariable String threadSlug,
+            @PathVariable Long id,
             ModelAndView mav,
             Principal principal,
             @ModelAttribute("flashMessage") FlashMessage flashMessage,
@@ -47,11 +48,13 @@ private ThreadService threadService;
                     direction = Sort.Direction.DESC
             ) Pageable pageable
     ) {
-
+        mav.setViewName("response/show");
         Thread thread = threadService.findBySlug(threadSlug);
         mav.addObject("thread", thread);
         mav.addObject("commentDTO", new CommentDTO());
-        mav.addObject("pageComments", commentService.getPageCommentOrdered(principal, thread, pageable));
+        Comment comment = commentService.findById(id);
+        mav.addObject("comment", comment );
+        mav.addObject("pageComments", commentService.getPageCommentOrdered(principal, thread, pageable, comment));
         return mav;
     }
 

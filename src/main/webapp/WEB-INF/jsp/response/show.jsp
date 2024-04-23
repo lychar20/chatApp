@@ -10,11 +10,20 @@
 
 <div>
 
-<c:forEach items="${comment.responses}" var="response">
-        <div class=" col-lg-4 col-md-6 col-sm-12 mt-4" ">
-            <%@ include file="component/entity/comments-card.jsp" %>
-        </div>
-    </c:forEach>
+ <c:set var="page" scope="request" value="${pageComments}"/>
+                <%@ include file="../component/pagination-number.jsp" %>
+            </div>
+
+            <div class="row">
+                    <c:forEach items="${pageComments.content}" var="comment">
+                        <div class="col-lg-4 col-md-6 col-sm-12 mt-4">
+                            <%@ include file="../component/entity/comment-card.jsp" %>
+                        </div>
+
+
+
+                    </c:forEach>
+                </div>
 
 
 </div>

@@ -41,6 +41,8 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
         return commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull( thread , pageable);
     }
 
+
+
     public Comment createComment(CommentDTO commentDTO, Thread thread, String name, Long id) {
 
         Optional<Comment> optionalComment = commentRepository.findById(id);
@@ -67,16 +69,35 @@ public class CommentService implements DAOFindByIdInterface<Comment> {
     }
 
 
-    public Page<Comment> getPageCommentOrdered(Principal principal, Thread thread, Pageable pageable) {
+    // Principal = utilisateur courant
+    // Thread = le thread courant
+    // Pageable = les informations sur la page
+    // Comment = le commentaire parent si on veux les réponses à un commentaire
+    public Page<Comment> getPageCommentOrdered(Principal principal, Thread thread, Pageable pageable, Comment commentParent) {
         User user = userService.findByNickname(principal.getName());
-        Page<Comment> pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull( thread , pageable);
+        Page<Comment> pageComments;
+
+        if(commentParent != null) { // si on a un Commentaire Parent on va chercher les réponse
+            pageComments = commentRepository.findAllByCommentFromAndModeratorIsNull(commentParent , pageable);
+        } else { // sinon on prends les commentaires du Thread
+            pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull(thread , pageable);
+        }
+
         if (user.isModerator()) {
             Sort.Order order = pageable.getSort().getOrderFor("moderator");
             if (order != null) {
-                if (order.isAscending()) {
-                    pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull(thread, pageable);
-                } else {
-                    pageComments = commentRepository.findByThreadAndModeratorIsNotNull(thread, pageable);
+                if (order.isAscending()) { // les commentaires non supprimé
+                    if(commentParent != null) { // si on a un Commentaire Parent on va chercher les réponse
+                        pageComments = commentRepository.findAllByCommentFromAndModeratorIsNull(commentParent , pageable);
+                    } else { // sinon on prends les commentaires du Thread
+                        pageComments = commentRepository.findAllByThreadAndModeratorIsNullAndCommentFromIsNull(thread , pageable);
+                    }
+                } else { // les commentaires supprimés
+                    if(commentParent != null) { // si on a un Commentaire Parent on va chercher les réponse
+                        pageComments = commentRepository.findAllByCommentFromAndModeratorIsNotNull(commentParent , pageable);
+                    } else { // sinon on prends les commentaires du Thread
+                        pageComments = commentRepository.findAllByThreadAndModeratorIsNotNullAndCommentFromIsNull(thread , pageable);
+                    }
                 }
             } else {
                 pageComments = commentRepository.findAll(pageable);
