@@ -39,14 +39,12 @@
         </c:if>
     </figcaption>
     <div class="comment-card w-100">
-        <p class="comment-description">
 
-        <a href="">
+        <p class="comment-description comment-card-description text-info">
             ${jspUtils.excerpt(comment.content, 209)}
-        </a>
-
         </p>
-        <div class="d-flex justify-content-between">
+
+        <div class="d-flex justify-content-between comment-card-test">
             <p class="">
                 <a href="${UrlRoute.URL_FORUM}/${thread.category.slug}/${thread.slug}/responses/${comment.id}">
             ${comment.responses.stream().filter(c -> c.moderator == null).count()} réponses
@@ -62,27 +60,7 @@
                      </button>
 
 
-                      <div class="my-3 d-none"
-                           data-hide-show-container="responseComment${comment.id}"
-                      >
-                          <f:form cssClass="col-md-8 col-sm-12 mx-auto"
-                                  action="${currentUrl}/${comment.id}"
-                                  method="post"
-                                  modelAttribute="commentDTO"
-                          >
-                              <div class="mb-3 row">
-                                  <f:label path="description" class="col-sm-2 col-form-label">Description</f:label>
-                                  <div class="col-sm-10">
-                                      <f:textarea cssClass="form-control" path="description"/>
-                                      <f:errors path="description" cssClass="invalid-feedback"/>
-                                  </div>
-                              </div>
 
-                              <f:button type="submit" class="btn btn-success">
-                                  <i class="fa fa-check"></i> Ajouter
-                              </f:button>
-                          </f:form>
-                      </div>
 
 
 

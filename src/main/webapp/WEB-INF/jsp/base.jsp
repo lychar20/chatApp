@@ -21,7 +21,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script type="text/javascript" src="${contextPath}/js/main.js"></script>
 </head>
-    <body>
+    <body class="mx-5">
 
     <security:authorize access="isAuthenticated()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-around">
@@ -47,9 +47,9 @@
                     </div>
                 </div>
             </div> -->
-            <div class="col-4">
-                <div class="d-flex justify-content-end">
-                            <span class="ms-2">
+            <div class="col-4 d-flex justify-content-end ms-5">
+
+                            <span class="ms-2 text-greeting">
                                 Bienvenue
                                 <a class="logged-user btn-link" href="">
                                     ${userLogged.nickname}
@@ -58,15 +58,15 @@
                                     </security:authorize>
                                 </a>
                             </span>
-                </div>
-                <div class="d-flex justify-content-end">
+
+
                     <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
                         <button type="submit" tabindex="3" class="btn btn-link" title="Se déconnecter">
-                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <i class="fa-solid fa-person-walking-arrow-right fa-2x"></i>
                         </button>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     </form>
-                </div>
+
             </div>
         </div>
     </nav>

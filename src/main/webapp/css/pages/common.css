@@ -30,3 +30,7 @@ h2 {
 .invalid-feedback {
     display: block;
 }
+
+.first-page{
+    height : 500px;
+}

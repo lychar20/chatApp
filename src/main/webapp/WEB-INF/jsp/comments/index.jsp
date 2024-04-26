@@ -3,7 +3,9 @@
 <c:set var="title" scope="request" value="Comments"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
-<h1> Voici les messages liés aux thread choisi</h1>
+<div class="mt-5">
+
+<h1> Voici les messages liés au fil de discussion choisi</h1>
 
 
  <h3 class=" my-5">Les Messages </h3>
@@ -88,13 +90,34 @@
                             <%@ include file="../../jsp/component/entity/comment-card.jsp" %>
                         </div>
 
+                          <div class="my-3 d-none"
+                                                   data-hide-show-container="responseComment${comment.id}"
+                                              >
+                                                  <f:form cssClass="col-md-8 col-sm-12 mx-auto"
+                                                          action="${currentUrl}/${comment.id}"
+                                                          method="post"
+                                                          modelAttribute="commentDTO"
+                                                  >
+                                                      <div class="mb-3 row">
+                                                          <f:label path="description" class="col-sm-2 col-form-label ">Description</f:label>
+                                                          <div class="col-sm-10 w-50">
+                                                              <f:textarea cssClass="form-control" path="description"/>
+                                                              <f:errors path="description" cssClass="invalid-feedback"/>
+                                                          </div>
+                                                      </div>
+
+                                                      <f:button type="submit" class="btn btn-success">
+                                                          <i class="fa fa-check"></i> Ajouter
+                                                      </f:button>
+                                                  </f:form>
+                                              </div>
 
 
                     </c:forEach>
                 </div>
 
 
-
+</div>
 
 
 <%@ include file="../../jsp/footer.jsp" %>

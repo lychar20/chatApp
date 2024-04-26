@@ -3,11 +3,11 @@
 <jsp:include flush="true" page="../base.jsp"/>
 
 
+<div class="first-page ">
+<h1 class="text-center">Bienvenue sur le forum ${category.name} </h1>
 
-<h1>Bienvenue sur le forum ${category.name} </h1>
 
-
-<h2> Voyez les différents fils de discussion existant testmmmm</h2>
+<h2 class="text-center mt-5"> Voici différents fils de discussion existants </h2>
 
 
 
@@ -23,10 +23,10 @@
 
 <!-- pour pouvoir créer un fil de discussion -->
 
-<div class="container-login">
+<div class="container-login ">
     <f:form method="POST" modelAttribute="threadDTO" class="form-signin">
-        <h1 class=" login  form-signin-heading">Créez votre fil</h1>
-        <div class="form-group ${status.error ? 'has-error' : ''}">
+        <h3 class=" login  form-signin-heading">Créez votre fil</h3>
+        <div class=" align-self-center form-group ${status.error ? 'has-error' : ''}">
             <f:input type="text" path="title" class="form-control w-25" placeholder="Title"
                      autofocus="true"/>
             <f:errors path="title" cssClass="invalid-feedback"/>
@@ -35,10 +35,10 @@
 
 
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <button class="btn btn-lg btn-primary btn-block w-25" type="submit">Submit</button>
     </f:form>
 </div>
 
 
-
+</div>
 <%@ include file="../../jsp/footer.jsp" %>

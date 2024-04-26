@@ -4,9 +4,9 @@
 
 
 
-<h1>Bienvenue sur le forum ${jspUtils.excerpt(comment.content, 209)} </h1>
+<h1 class=" mt-5 fs-1 fst-italic text-primary"> ${jspUtils.excerpt(comment.content, 209)} </h1>
 
-<h2> Toutes les reponses  </h2>
+<h2 class="mt-5"> Toutes les reponses  </h2>
 
 <div>
 
@@ -30,11 +30,11 @@
 
 
 
-<button class="ms-2 btn btn-link"
-                                              title="Répondre"
+<button class="mt-5 ms-2 btn btn-link"
+                                              title="Répondre au méssage initial"
                                               data-hide-show-button="responseComment${comment.id}"
                                       >
-                                          <i class="fa fa-pen fa-2x"></i>
+                                          <i class="fa-solid fa-comment fa-3x"></i>
                      </button>
 
 

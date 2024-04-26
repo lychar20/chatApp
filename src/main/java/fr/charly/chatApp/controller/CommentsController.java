@@ -41,7 +41,6 @@ private FlashMessageBuilder flashMessageBuilder;
     @GetMapping(UrlRoute.URL_FORUM_NAME_COMMENTS)
     public ModelAndView create(
             @PathVariable String threadSlug,
-            @PathVariable(required = false) Long id, // l id est optionelle
             Principal principal,
             ModelAndView mav,
             @ModelAttribute("flashMessage") FlashMessage flashMessage,
@@ -55,9 +54,7 @@ private FlashMessageBuilder flashMessageBuilder;
         Thread thread = threadService.findBySlug(threadSlug);
         mav.addObject("thread", thread);
         mav.addObject("commentDTO", new CommentDTO());
-        Comment comment = commentService.findById(id);
-        mav.addObject("comment", comment );
-        mav.addObject("pageComments", commentService.getPageCommentOrdered(principal, thread, pageable, comment));
+        mav.addObject("pageComments", commentService.getPageCommentOrdered(principal, thread, pageable, null));
         return mav;
     }
 
