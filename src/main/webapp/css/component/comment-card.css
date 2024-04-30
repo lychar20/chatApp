@@ -44,3 +44,11 @@
 .comment-card-description {
     margin-top: 30px;
 }
+
+.cc-font-size {
+    font-size: 200%;
+}
+
+.cc-fz-message {
+    font-size: 120%;
+}

@@ -3,12 +3,12 @@
 <c:set var="title" scope="request" value="Comments"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
-<div class="mt-5">
+<div class=" cc-background5 px-5">
 
-<h1> Voici les messages liés au fil de discussion choisi</h1>
+<h1 class="p-5 merriwheather"> Voici les messages liés au fil de discussion choisi</h1>
 
 
- <h3 class=" my-5">Les Messages </h3>
+ <h3 class=" my-5 merriwheather fs-3 fst-italic">Les Messages </h3>
 
                  <button class="ms-2 btn btn-link"
                          title="Ajouter un message"

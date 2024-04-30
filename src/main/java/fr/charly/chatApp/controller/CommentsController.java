@@ -62,7 +62,8 @@ private FlashMessageBuilder flashMessageBuilder;
 
     @PostMapping(value = {
             UrlRoute.URL_FORUM_NAME_COMMENTS,
-            UrlRoute.URL_FORUM_NAME_COMMENTS + "/{id}"
+            UrlRoute.URL_FORUM_NAME_COMMENTS + "/{id}",
+            UrlRoute.URL_RESPONSES_COMMENT
     }) // l id est optionelle, le commentaire peux etre une reponse ou non, donc on mets 2 routes pour créer un commentaire
     public ModelAndView create(
             @PathVariable String threadSlug,
@@ -96,7 +97,7 @@ private FlashMessageBuilder flashMessageBuilder;
                 ));
 
         if (id != null) { // on le mets apres pour avoir le Message de Création
-            mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug + "/reponses/" + id);
+            mav.setViewName("redirect:" + UrlRoute.URL_FORUM + "/" + slug + "/" + threadSlug + "/responses/" + id);
             // on mets un redirect pour avoir la bonne url pour lutilisateur
             return mav;
         }

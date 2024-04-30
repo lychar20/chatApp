@@ -40,13 +40,13 @@
     </figcaption>
     <div class="comment-card w-100">
 
-        <p class="comment-description comment-card-description text-info">
+        <p class="comment-description comment-card-description text-info merriwheather cc-fz-message">
             ${jspUtils.excerpt(comment.content, 209)}
         </p>
 
         <div class="d-flex justify-content-between comment-card-test">
             <p class="">
-                <a href="${UrlRoute.URL_FORUM}/${thread.category.slug}/${thread.slug}/responses/${comment.id}">
+                <a class="cc-text-link" href="${UrlRoute.URL_FORUM}/${thread.category.slug}/${thread.slug}/responses/${comment.id}">
             ${comment.responses.stream().filter(c -> c.moderator == null).count()} réponses
                 </a>
             </p>

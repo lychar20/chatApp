@@ -4,16 +4,17 @@
     font-size: 1.1em;
 }
 
-.lienChoixIndex{
+.cc-text-link{
     text-decoration: none;
+
 }
 
 
 
 .testons{
-    background-image: url("https://hpnfrance.com/wp-content/uploads/2017/10/help.jpg") ;
-    height: 80%;
+    background-image: url("https://st3.depositphotos.com/13324256/17362/i/380/depositphotos_173629162-stock-photo-dark-wooden-background.jpg") ;
+    height: 100%;
     background-size: cover;
-    //background-repeat: no-repeat;
+    background-repeat: no-repeat;
 
 }

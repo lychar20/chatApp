@@ -21,11 +21,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script type="text/javascript" src="${contextPath}/js/main.js"></script>
 </head>
-    <body class="mx-5">
+    <body class="">
 
     <security:authorize access="isAuthenticated()">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-around">
-        <div class="row w-100">
+    <nav class=" cc-navbar navbar navbar-expand-lg navbar-dark  justify-content-around">
+        <div class="row w-100 py-3">
             <div class="col-7">
                 <a class="navbar-brand ms-3" href="${contextPath}/">
                     <i class="fa-solid fa-hand-holding-heart fa-3x"></i>

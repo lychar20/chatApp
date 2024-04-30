@@ -1,0 +1,41 @@
+.cc-background1 {
+    background: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background-image: url("https://st3.depositphotos.com/13349494/18562/i/380/depositphotos_185624384-stock-photo-abstract-dark-background-blue-bokeh.jpg") ;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+
+.cc-background2 {
+    background: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        background-image: url("https://st3.depositphotos.com/13324256/17034/i/380/depositphotos_170344420-stock-photo-wooden-background.jpg") ;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+}
+
+.cc-height{
+    height: 120%
+}
+
+.cc-padding {
+    padding-top: 10%;
+}
+
+.cc-background4 {
+    background: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+    background-image: url("https://st4.depositphotos.com/13349494/21087/i/380/depositphotos_210870522-stock-photo-blurred-pink-glitter-dark-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+.cc-background5 {
+        background: linear-gradient( rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        background-image: url("https://st5.depositphotos.com/48848154/68843/i/380/depositphotos_688437924-stock-photo-abstract-black-background-grunge-texture.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+}
+

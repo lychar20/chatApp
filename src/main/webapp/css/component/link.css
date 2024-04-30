@@ -11,3 +11,6 @@
     color: var(--bs-primary);
 }
 
+a {
+  color: white;
+}

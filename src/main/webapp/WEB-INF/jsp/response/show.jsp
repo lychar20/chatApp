@@ -3,16 +3,17 @@
 <jsp:include flush="true" page="../base.jsp"/>
 
 
+<div class="cc-background5 px-5">
 
-<h1 class=" mt-5 fs-1 fst-italic text-primary"> ${jspUtils.excerpt(comment.content, 209)} </h1>
+<h1 class=" cc-padding fs-1 fst-italic text-primary merriwheather"> ${jspUtils.excerpt(comment.content, 209)} </h1>
 
 <h2 class="mt-5"> Toutes les reponses  </h2>
 
-<div>
+
 
  <c:set var="page" scope="request" value="${pageComments}"/>
                 <%@ include file="../component/pagination-number.jsp" %>
-            </div>
+
 
             <div class="row">
                     <c:forEach items="${pageComments.content}" var="comment">
@@ -26,7 +27,7 @@
                 </div>
 
 
-</div>
+
 
 
 
@@ -42,7 +43,7 @@
                            data-hide-show-container="responseComment${comment.id}"
                       >
                           <f:form cssClass="col-md-8 col-sm-12 mx-auto"
-                                  action="${currentUrl}/${comment.id}"
+                                  action="${currentUrl}"
                                   method="post"
                                   modelAttribute="commentDTO"
                           >
@@ -63,6 +64,6 @@
 
 
 
-
+</div>
 
 <%@ include file="../../jsp/footer.jsp" %>
