@@ -23,10 +23,10 @@ public class ChatRoom {
 
     private String chatId;
 
-    @ManyToOne
+
     private String chatterSenderId;
 
-    @ManyToOne
+
     private String chatterReceiverId;
 
 }

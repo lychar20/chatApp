@@ -1,6 +1,7 @@
 package fr.charly.chatApp.entity;
 
 import fr.charly.chatApp.entity.enumo.MessageType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +13,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Builder
 public class ChatRoomMessage {
 

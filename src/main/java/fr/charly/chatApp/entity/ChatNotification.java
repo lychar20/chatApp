@@ -15,10 +15,8 @@ public class ChatNotification {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
     private String chatterSenderId;
 
-    @ManyToOne
     private String chatterReceiverId;
 
     private String content;
