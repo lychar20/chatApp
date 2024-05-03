@@ -36,8 +36,6 @@ function init(event) {
     function onConnected() {
         // Subscribe to the Public Topic
         stompClient.subscribe('/topic/public/'+category.value, onMessageReceived);
-        // Subscribe to the oneToOne queue
-        stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
 
         // Tell your username to the server
         stompClient.send("/app/chat.addUser/"+category.value,
