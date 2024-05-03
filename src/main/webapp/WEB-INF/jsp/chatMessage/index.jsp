@@ -2,7 +2,7 @@
 <jsp:include flush="true" page="../base.jsp"/>
 
 
-<div>
+<div class="cc-background5 px-5 pt-5">
     <!-- pour avoir le username et la category dans le js -->
     <input type="text" id="name" value="${userLogged.nickname}" class="d-none"/>
     <input type="text" id="categoryChoice" value="${categoryChoice.slug}" class="d-none"/>
@@ -30,12 +30,12 @@
 
         </ul>
 
-        <!-- formulaire d'envoie de message -->
+        <!-- formulaire d envoie de message -->
         <div>
-            <div class="form-group">
+            <div class="d-flex form-group">
                 <div class="input-group clearfix">
-                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
-                    <button class="primary" id="sendMessage">Send</button>
+                    <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control cc-width-chat"/>
+                    <button class="bg-info cc-width-button" id="sendMessage">Send</button>
                 </div>
             </div>
         </div>

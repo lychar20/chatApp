@@ -5,7 +5,5 @@
         <div class="text-center cc-font-size redressed">
             ${category.name}
         </div>
-
-
     </div>
 </a>

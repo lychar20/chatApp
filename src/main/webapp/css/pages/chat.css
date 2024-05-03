@@ -2,3 +2,13 @@
 .choiceChat {
     border: solid 2px yellow;
 }
+
+.cc-width-button {
+    width: 20%;
+    height: 200%;
+
+}
+
+.cc-width-chat{
+    height: 200%;
+}
