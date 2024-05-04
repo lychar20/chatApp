@@ -9,45 +9,46 @@ const connectingElement = document.querySelector('.connecting');
 const chatArea = document.querySelector('#chat-messages');
 const logout = document.querySelector('#logout');
 
-let stompClient = null;
-let nickname = null;
-let fullname = null;
+//let stompClient = null;
+//let nickname = null;
+//let fullname = null;
 let selectedUserId = null;
 
-function connect(event) {
-    nickname = document.querySelector('#nickname').value.trim();
-    fullname = document.querySelector('#fullname').value.trim();
+//function connect(event) {
+//    nickname = document.querySelector('#nickname').value.trim();
+//    fullname = document.querySelector('#fullname').value.trim();
 
-    if (nickname && fullname) {
-        usernamePage.classList.add('hidden');
-        chatPage.classList.remove('hidden');
+//    if (nickname && fullname) {
+//        usernamePage.classList.add('hidden');
+//        chatPage.classList.remove('hidden');
 
-        const socket = new SockJS('/ws');
-        stompClient = Stomp.over(socket);
+//        const socket = new SockJS('/ws');
+//        stompClient = Stomp.over(socket);
 
-        stompClient.connect({}, onConnected, onError);
-    }
-    event.preventDefault();
-}
+//        stompClient.connect({}, onConnected, onError);
+//    }
+//    event.preventDefault();
+//}
 
 
 function onConnected() {
-    stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
-    stompClient.subscribe(`/user/public`, onMessageReceived);
+        // Subscribe to the one to one chat
+        stompClient.subscribe(`/user/${username}/queue/messages`, onMessageReceived);
+        stompClient.subscribe(`/user/public`, onMessageReceived);
 
-    // register the connected user
-    stompClient.send("/app/user.addUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'ONLINE'})
-    );
-    document.querySelector('#connected-user-fullname').textContent = fullname;
-    findAndDisplayConnectedUsers().then();
-}
+        // Tell your username to the server
+        stompClient.send("/app/user.addUser",
+            {},
+            JSON.stringify({ sender: username, status: 'ONLINE' })
+        );
+        document.querySelector('#connected-user-fullname').textContent = username;
+            findAndDisplayConnectedUsers().then();
+    }
 
 async function findAndDisplayConnectedUsers() {
     const connectedUsersResponse = await fetch('/users');
     let connectedUsers = await connectedUsersResponse.json();
-    connectedUsers = connectedUsers.filter(user => user.nickName !== nickname);
+    connectedUsers = connectedUsers.filter(user => user.userName !== username);
     const connectedUsersList = document.getElementById('connectedUsers');
     connectedUsersList.innerHTML = '';
 
@@ -64,14 +65,14 @@ async function findAndDisplayConnectedUsers() {
 function appendUserElement(user, connectedUsersList) {
     const listItem = document.createElement('li');
     listItem.classList.add('user-item');
-    listItem.id = user.nickName;
+    listItem.id = user.userName;
 
     const userImage = document.createElement('img');
-    userImage.src = '../img/user_icon.png';
+    userImage.src = '';
     userImage.alt = user.fullName;
 
     const usernameSpan = document.createElement('span');
-    usernameSpan.textContent = user.fullName;
+    usernameSpan.textContent = user.userName;
 
     const receivedMsgs = document.createElement('span');
     receivedMsgs.textContent = '0';
@@ -104,10 +105,10 @@ function userItemClick(event) {
 
 }
 
-function displayMessage(senderId, content) {
+function displayMessage(chatterSenderId, content) {
     const messageContainer = document.createElement('div');
     messageContainer.classList.add('message');
-    if (senderId === nickname) {
+    if (chatterSenderId === nickname) {
         messageContainer.classList.add('sender');
     } else {
         messageContainer.classList.add('receiver');
@@ -119,11 +120,11 @@ function displayMessage(senderId, content) {
 }
 
 async function fetchAndDisplayUserChat() {
-    const userChatResponse = await fetch(`/messages/${nickname}/${selectedUserId}`);
+    const userChatResponse = await fetch(`/messages/${username}/${selectedUserId}`);
     const userChat = await userChatResponse.json();
     chatArea.innerHTML = '';
     userChat.forEach(chat => {
-        displayMessage(chat.senderId, chat.content);
+        displayMessage(chat.chatterSenderId, chat.content);
     });
     chatArea.scrollTop = chatArea.scrollHeight;
 }
@@ -139,13 +140,13 @@ function sendMessage(event) {
     const messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         const chatMessage = {
-            senderId: nickname,
-            recipientId: selectedUserId,
+            chatterSenderId: username,
+            chatterReceiverId: selectedUserId,
             content: messageInput.value.trim(),
             timestamp: new Date()
         };
         stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
-        displayMessage(nickname, messageInput.value.trim());
+        displayMessage(username, messageInput.value.trim());
         messageInput.value = '';
     }
     chatArea.scrollTop = chatArea.scrollHeight;
@@ -157,8 +158,8 @@ async function onMessageReceived(payload) {
     await findAndDisplayConnectedUsers();
     console.log('Message received', payload);
     const message = JSON.parse(payload.body);
-    if (selectedUserId && selectedUserId === message.senderId) {
-        displayMessage(message.senderId, message.content);
+    if (selectedUserId && selectedUserId === message.chatterSenderId) {
+        displayMessage(message.chatterSenderId, message.content);
         chatArea.scrollTop = chatArea.scrollHeight;
     }
 
@@ -168,7 +169,7 @@ async function onMessageReceived(payload) {
         messageForm.classList.add('hidden');
     }
 
-    const notifiedUser = document.querySelector(`#${message.senderId}`);
+    const notifiedUser = document.querySelector(`#${message.chatterSenderId}`);
     if (notifiedUser && !notifiedUser.classList.contains('active')) {
         const nbrMsg = notifiedUser.querySelector('.nbr-msg');
         nbrMsg.classList.remove('hidden');

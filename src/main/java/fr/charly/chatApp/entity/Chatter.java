@@ -1,5 +1,6 @@
 package fr.charly.chatApp.entity;
 
+import fr.charly.chatApp.entity.enumo.Status;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
@@ -38,6 +39,7 @@ public class Chatter extends User {
     @OneToMany (mappedBy = "chatter")
     private List<Reaction> reactions = new ArrayList<>();
 
+    private Status status;
 
 
 }
