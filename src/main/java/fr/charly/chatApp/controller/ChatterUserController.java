@@ -2,8 +2,7 @@ package fr.charly.chatApp.controller;
 
 
 import fr.charly.chatApp.DTO.ThreadDTO;
-import fr.charly.chatApp.entity.ChatMessage;
-import fr.charly.chatApp.entity.Chatter;
+import fr.charly.chatApp.entity.*;
 import fr.charly.chatApp.entity.Thread;
 import fr.charly.chatApp.mapping.UrlRoute;
 import fr.charly.chatApp.service.CategoryService;
@@ -38,6 +37,8 @@ public class ChatterUserController {
 
 
     private ChatterUserService chatterUserService;
+    private UserService userService;
+    private CategoryService categoryService;
 
     @MessageMapping("/user.addUser")
     @SendTo("/user/public")
@@ -57,9 +58,11 @@ public class ChatterUserController {
         return chatter;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<Chatter>> findConnectedUsers() {
-        return ResponseEntity.ok(chatterUserService.findConnectedUsers());
+    @GetMapping(UrlRoute.URL_USERS_CHAT_CATEGORY)
+    public ResponseEntity<List<User>> findConnectedUsers(
+            @PathVariable String slug
+            ) {
+        return ResponseEntity.ok(categoryService.findBySlug(slug));
     }
 
 

@@ -31,7 +31,7 @@ public abstract class User implements UserDetails {
     @Column(nullable = false)
     protected String password;
 
-
+    protected Category category;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

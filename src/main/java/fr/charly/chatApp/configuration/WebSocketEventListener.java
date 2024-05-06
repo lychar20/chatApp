@@ -1,7 +1,9 @@
 package fr.charly.chatApp.configuration;
 
 import fr.charly.chatApp.entity.ChatMessage;
+import fr.charly.chatApp.entity.Chatter;
 import fr.charly.chatApp.entity.enumo.MessageType;
+import fr.charly.chatApp.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -16,6 +18,7 @@ import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 public class WebSocketEventListener {
 
     private final SimpMessageSendingOperations messagingTemplate;
+    private UserService userService;
 
     @EventListener
     public void handleWebSocketDisconnectListener(SessionDisconnectEvent event) {
@@ -32,6 +35,10 @@ public class WebSocketEventListener {
                     .sender(username)
                     .build();
             messagingTemplate.convertAndSend("/topic/public/"+category, chatMessage);
+
+            Chatter chatter = (Chatter)userService.findByNickname(username);
+            userService.saveUser(chatter, null);
+            // on mets la catégorie à null pour dire que le user est dans aucun chat
         }
     }
 

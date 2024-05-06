@@ -5,6 +5,8 @@ import fr.charly.chatApp.entity.Category;
 import fr.charly.chatApp.entity.Chatter;
 import fr.charly.chatApp.entity.User;
 import fr.charly.chatApp.entity.Moderator;
+import fr.charly.chatApp.entity.enumo.Status;
+import fr.charly.chatApp.repository.CategoryRepository;
 import fr.charly.chatApp.repository.UserRepository;
 import fr.charly.chatApp.service.interfaces.DAOFindByIdInterface;
 import jakarta.persistence.EntityNotFoundException;
@@ -27,6 +29,7 @@ import java.util.Map;
 public class UserService implements DAOFindByIdInterface<User>, UserDetailsService {
 
     private UserRepository userRepository;
+    private CategoryRepository categoryRepository;
     private BCryptPasswordEncoder passwordEncoder;
 
 
@@ -44,7 +47,15 @@ public class UserService implements DAOFindByIdInterface<User>, UserDetailsServi
     }
 
 
+    public Chatter saveUser(Chatter chatter, Category category ) {
+        chatter.setCategory(category);
+        return userRepository.save(chatter);
+    }
 
+
+    public List<User> findByCategory(Category category){
+        return userRepository.findAllByCategory(category);
+    }
 
 
     public Chatter create(RegisterPostDTO registerPostDTO) {

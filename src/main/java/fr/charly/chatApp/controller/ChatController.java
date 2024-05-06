@@ -3,10 +3,8 @@ package fr.charly.chatApp.controller;
 
 import ch.qos.logback.classic.util.LogbackMDCAdapter;
 import fr.charly.chatApp.DTO.ThreadDTO;
-import fr.charly.chatApp.entity.Category;
-import fr.charly.chatApp.entity.ChatMessage;
+import fr.charly.chatApp.entity.*;
 import fr.charly.chatApp.entity.Thread;
-import fr.charly.chatApp.entity.User;
 import fr.charly.chatApp.mapping.UrlRoute;
 import fr.charly.chatApp.service.CategoryService;
 import fr.charly.chatApp.service.ThreadService;
@@ -37,6 +35,7 @@ public class ChatController {
 
     private CategoryService categoryService;
     private ThreadService threadService;
+    private UserService userService;
 
 
 
@@ -66,6 +65,11 @@ public class ChatController {
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         headerAccessor.getSessionAttributes().put("category", categorySlug);
 
+        Chatter chatter =  (Chatter)userService.findByNickname(chatMessage.getSender());
+        Category category = categoryService.findBySlug(categorySlug) ;
+        userService.saveUser(chatter , category);
+
+
         return chatMessage;
     }
 
@@ -80,6 +84,9 @@ public class ChatController {
         mav.addObject("categoryChoice", categoryService.findBySlug(slug));
         return mav;
     }
+
+
+
 
 
 //    @GetMapping(UrlRoute.URL_FORUM_NAME)
