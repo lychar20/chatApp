@@ -55,11 +55,16 @@ public class ChatRoomController {
         );
     }
 
+
     @GetMapping("/messages/{chatterSenderId}/{chatterReceiverId}")
-    public ResponseEntity<List<ChatRoomMessage>> findChatMessages(@PathVariable String chatterSenderId,
-                                                                  @PathVariable String chatterReceiverId) {
-        return ResponseEntity
-                .ok(chatMessageRoomService.findChatMessages(chatterSenderId, chatterReceiverId));
+    public ModelAndView show(@PathVariable String chatterSenderId,
+                             @PathVariable String chatterReceiverId,
+                             ModelAndView mav)
+    {
+        mav.setViewName("chatMessage/index");
+
+        mav.addObject("chatMessageRoom", chatMessageRoomService.findChatMessages(chatterSenderId, chatterReceiverId));
+        return mav;
     }
 
 

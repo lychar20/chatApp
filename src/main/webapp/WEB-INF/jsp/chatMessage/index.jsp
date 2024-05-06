@@ -11,6 +11,7 @@
     <!-- pour avoir le display des User déja connectés -->
 
     <div class="chat-container hidden" id="chat-page">
+
         <div class="users-list">
             <div class="users-list-container">
                 <h2>Online Users</h2>
@@ -19,13 +20,15 @@
             </div>
             <div>
                 <p id="connected-user-fullname"></p>
-
             </div>
-        </div>
+
+
+
+    </div>
 
 
     <div class="chat-container">
-        <!-- affichage des messages -->
+        <!-- affichage des messages du chat général-->
         <ul id="messageArea">
 
         </ul>

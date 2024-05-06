@@ -36,7 +36,11 @@ function onConnected() {
         stompClient.subscribe(`/user/${username}/queue/messages`, onMessageReceived);
         stompClient.subscribe(`/user/public`, onMessageReceived);
 
+        stompClient.subscribe('/topic/public/'+category.value, onMessageReceived);
+
         // Tell your username to the server
+        stompClient.send("/app/chat.addUser/"+category.value,
+
         stompClient.send("/app/user.addUser",
             {},
             JSON.stringify({ sender: username, status: 'ONLINE' })
