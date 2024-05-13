@@ -31,6 +31,7 @@ public abstract class User implements UserDetails {
     @Column(nullable = false)
     protected String password;
 
+    @ManyToOne
     protected Category category;
 
     @Override

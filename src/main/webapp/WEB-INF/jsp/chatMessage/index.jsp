@@ -28,14 +28,16 @@
 
 
     <div class="chat-container">
+    <div class="cc-height-messageArea">
         <!-- affichage des messages du chat général-->
         <ul id="messageArea">
 
         </ul>
+    </div>
 
         <!-- formulaire d envoie de message -->
         <div>
-            <div class="d-flex form-group">
+            <div class="d-flex form-group cc-message-chat">
                 <div class="input-group clearfix">
                     <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control cc-width-chat"/>
                     <button class="bg-info cc-width-button" id="sendMessage">Send</button>

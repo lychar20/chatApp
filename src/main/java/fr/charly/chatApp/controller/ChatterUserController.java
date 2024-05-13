@@ -60,12 +60,11 @@ public class ChatterUserController {
 
     @GetMapping(UrlRoute.URL_USERS_CHAT_CATEGORY)
     public ResponseEntity<List<User>> findConnectedUsers(
-            @PathVariable String slug
+            @PathVariable String category
             ) {
-        return ResponseEntity.ok(categoryService.findBySlug(slug));
+        return ResponseEntity.ok(userService.findByCategory(categoryService.findBySlug(category)));
+
     }
-
-
 
 }
 
