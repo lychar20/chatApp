@@ -98,6 +98,12 @@ function init(event) {
 
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
+        updateScroll(element);
+    }
+
+    function updateScroll(){
+        var element = document.getElementById("cc-height-messageArea");
+        element.scrollTop = element.scrollHeight;
     }
 
     function getAvatarColor(messageSender) {
