@@ -92,7 +92,7 @@ button.accent {
 }
 
 .cc-height-messageArea {
-    background-color: red;
+  //  background-color: red;
     max-height: 85%;
     overflow: auto;
 }
@@ -200,6 +200,11 @@ button.accent {
     width: 100%;
 }
 
+.test_color {
+    background-color: blue;
+    width: 50 px;
+    height: 50 px;
+}
 
 
 

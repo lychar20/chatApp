@@ -98,7 +98,7 @@ function init(event) {
 
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
-        updateScroll(element);
+        messageElement.scrollIntoView();
     }
 
     function updateScroll(){

@@ -28,11 +28,14 @@
 
 
     <div class="chat-container">
-    <div class="cc-height-messageArea">
+    <div class=" d-flex cc-height-messageArea">
         <!-- affichage des messages du chat général-->
         <ul id="messageArea">
 
         </ul>
+
+        <div class="test_color"> dddddddddd</div>
+
     </div>
 
         <!-- formulaire d envoie de message -->
