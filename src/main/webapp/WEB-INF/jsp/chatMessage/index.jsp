@@ -28,13 +28,19 @@
 
 
     <div class="chat-container">
-    <div class=" d-flex cc-height-messageArea">
+    <div class="  cc-height-messageArea example-dropzone"
+         ondragover="onDragOver(event);"
+         ondrop="onDrop(event);"
+    >
         <!-- affichage des messages du chat général-->
         <ul id="messageArea">
 
         </ul>
 
-        <div class="test_color"> dddddddddd</div>
+        <div id="ball" id="draggable-1"
+                             class="example-draggable"
+                             draggable="true"
+                             ondragstart="onDragStart(event);"> dddddddddd</div>
 
     </div>
 

@@ -200,10 +200,13 @@ button.accent {
     width: 100%;
 }
 
-.test_color {
+#ball {
     background-color: blue;
     width: 50 px;
     height: 50 px;
+    position: absolute;
+    right: 50px;
+    top: 50px
 }
 
 
