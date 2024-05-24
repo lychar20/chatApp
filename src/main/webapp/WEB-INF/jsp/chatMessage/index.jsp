@@ -28,7 +28,7 @@
 
 
     <div class="chat-container">
-    <div class="  cc-height-messageArea example-dropzone"
+    <div class=" gd-couleur cc-height-messageArea example-dropzone"
          ondragover="onDragOver(event);"
          ondrop="onDrop(event);"
     >
