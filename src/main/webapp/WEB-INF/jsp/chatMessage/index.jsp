@@ -40,7 +40,36 @@
         <div id="ball" id="draggable-1"
                              class="example-draggable"
                              draggable="true"
-                             ondragstart="onDragStart(event);"> dddddddddd</div>
+                             ondragstart="onDragStart(event);">
+
+            <div class="oneToOneContainer">
+                 <div class="oneToOne ">
+
+                     <div class="chosenChatter bg-success"> dddddddddd</div>
+
+                         <div class="messageChosenChatter bg-warning">
+
+                            <ul id="messageArea2">
+
+                            </ul>
+
+                         </div>
+
+                 </div>
+
+                 <!-- affichage des messages du one to one chat-->
+                 <div>
+                             <div class="d-flex form-group cc-message-chat">
+                                 <div class="input-group clearfix">
+                                     <input type="text" id="message2" placeholder="Type a message..." autocomplete="off" class="form-control cc-width-chat"/>
+                                     <button class="bg-info cc-width-button" id="sendMessage2">Send</button>
+                                 </div>
+                             </div>
+                         </div>
+
+            </div>
+
+        </div>
 
     </div>
 

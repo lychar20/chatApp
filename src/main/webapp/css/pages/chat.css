@@ -213,4 +213,17 @@ button.accent {
     background-color: grey;
 }
 
+.oneToOne {
+    display: flex;
+    height: 100%;
+}
 
+.chosenChatter {
+    width: 35%;
+    height: 85%;
+}
+
+.messageChosenChatter{
+    width: 65%;
+    height: 85%;
+}

@@ -123,34 +123,54 @@ function init(event) {
     sendButton.addEventListener('click', sendMessage);
 }
 
-window.addEventListener('load', (event) => {
-    init(event);
-});
-
-
 
 //////
+var shiftX = 0;
+var shiftY = 0;
 
-function onDragStart(event) {
-  event
-    .dataTransfer
-    .setData('text/plain', event.target.id);
-}
+window.addEventListener('load', (event) => {
+    const ball = document.getElementById('ball');
+    init(event);
+    ball.onmousedown = function(event) {
+      // (1) la préparer au déplacement :  réglé en absolute et en haut par z-index
+      ball.style.position = 'absolute';
+      ball.style.zIndex = 1000;
 
-function onDragOver(event) {
-  event.preventDefault();
-}
+      // déplacez-le de tout parent actuel directement dans body
+      // pour le placer par rapport à body
+      document.body.append(ball);
 
-function onDrop(event) {
-  const id = event
-    .dataTransfer
-    .getData('text');
+      // Centrer la balle aux coordonnées (pageX, pageY)
+      function moveAt(pageX, pageY) {
+        ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+        ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+//        ball.style.left = pageX + shiftX+ 'px';
+//        ball.style.top = pageY + shiftY + 'px';
+        console.log(shiftX, shiftY)
+      }
 
-    const draggableElement = document.getElementById(id);
-    const dropzone = event.target;
-    dropzone.appendChild(draggableElement);
+      // déplacer notre balle en positionnement absolu sous le pointeur
+      shiftX = event.clientX - ball.getBoundingClientRect().left;
+      shiftY = event.clientY - ball.getBoundingClientRect().top;
+      moveAt(event.pageX, event.pageY);
 
-    event
-        .dataTransfer
-        .clearData();
-}
+      function onMouseMove(event) {
+        shiftX = event.clientX - ball.getBoundingClientRect().left;
+        shiftY = event.clientY - ball.getBoundingClientRect().top;
+        moveAt(event.pageX, event.pageY);
+      }
+
+      // (2) déplacer la balle sur le déplacement de la souris
+      document.addEventListener('mousemove', onMouseMove);
+
+      // (3) laisser tomber la balle, retirer les gestionnaires inutiles
+      ball.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        ball.onmouseup = null;
+      };
+
+    };
+    ball.ondragstart = function() {
+      return false;
+    };
+});
